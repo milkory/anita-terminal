@@ -1,0 +1,29 @@
+@import 'base.scss';
+@import 'bootstrap/dist/css/bootstrap.min.css';
+
+body {
+  overflow-y: scroll;
+}
+
+body::-webkit-scrollbar {
+  width: 4px;
+  height: 4px;
+}
+
+body::-webkit-scrollbar-thumb {
+  background-color: #333;
+}
+
+body::-webkit-scrollbar-track {
+  background-color: #00000040;
+}
+
+.screen-height {
+  height: calc(100vh - var(--anita-bottom-height));
+}
+
+.full-screen {
+  position: fixed;
+  top: 0;
+  height: 100vh;
+}
