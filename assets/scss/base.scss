@@ -13,12 +13,20 @@
   --anita-bottom-height: 130px;
   --anita-color-text: #eee;
   --anita-color-note: #aaa;
+
+  --bs-dark: #00000080;
+  --bs-dark-rgb: 0, 0, 0;
+  --bs-bg-opacity: 0.4;
 }
 
 @media (max-width: 768px) {
   :root {
-    --anita-bottom-height: 0;
+    --anita-bottom-height: 0px;
   }
+}
+
+.main-text p:last-child {
+  margin-bottom: 0;
 }
 
 .lang-zh {
@@ -26,6 +34,10 @@
   .font-title {
     font-family: 'Noto Serif SC', serif;
     font-weight: bold;
+  }
+
+  .main-text p {
+    text-indent: 2em;
   }
 }
 

@@ -2,11 +2,13 @@
 useHead({
   titleTemplate: (chunk) => (chunk ? `${chunk} / Anita Terminal` : 'Anita Terminal')
 });
+
+const background = useBackground();
 </script>
 
 <template>
   <NuxtLoadingIndicator />
-  <div id="background"></div>
+  <div id="background" :style="`background-image: url(${background});`"></div>
   <SiteNav>
     <template #left>
       <SiteNavItem icon="/img/icon/nav/char.png" name="角色" to="/char" />

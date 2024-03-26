@@ -27,3 +27,41 @@ body::-webkit-scrollbar-track {
   top: 0;
   height: 100vh;
 }
+
+.h-full {
+  height: calc(100vh - var(--anita-bottom-height));
+}
+
+.mb-nav {
+  margin-bottom: var(--anita-bottom-height);
+}
+
+.nav-item {
+  margin-right: 0.2rem;
+}
+
+.nav-pills {
+  --bs-nav-pills-link-active-color: #000;
+  --bs-nav-pills-link-active-bg: #eee;
+  --bs-nav-link-padding-y: 0.45rem;
+}
+
+.nav-link {
+  color: var(--bs-white);
+}
+
+.nav-link:hover {
+  color: var(--bs-gray-500);
+}
+
+.btn-secondary {
+  --bs-btn-bg: #6c757d60;
+  --bs-btn-border-color: #6c757d60;
+}
+
+@media (max-width: 767.99px) {
+  .btn-secondary {
+    --bs-btn-bg: #6c757d;
+    --bs-btn-border-color: #6c757d;
+  }
+}

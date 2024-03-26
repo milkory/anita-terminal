@@ -7,15 +7,15 @@ defineProps<{
 </script>
 
 <template>
-  <div class="row">
-    <div class="col-3">
+  <div class="unit-info mt-2 d-flex">
+    <div class="unit-side d-flex align-items-center">
       <img
-        class="side img-fluid px-1"
+        class="img-fluid px-1 m-auto"
         :src="`/img/icon/char/camp_${data.side.sort}.png`"
         :alt="data.side.name"
       />
     </div>
-    <div class="col-9">
+    <div class="ms-2">
       <div class="unit-name font-title fs-3 lh-1">
         {{ data.name }}
       </div>
@@ -37,15 +37,20 @@ defineProps<{
 </template>
 
 <style scoped lang="scss">
+.unit-side {
+  height: 5rem;
+  width: 4.8rem;
+}
+
 .unit-name-en {
-  color: var(--anita-color-note);
+  color: var(--bs-gray-500);
 }
 
 .unit-rarity {
   display: inline-block;
-  width: 4.5em;
+  width: 4.5rem;
   img {
-    height: 2em;
+    height: 2rem;
   }
 }
 

@@ -13,9 +13,16 @@ function changeTo(view: UnitView) {
 </script>
 
 <template>
-  <div class="view-root">
-    <div class="view">
-      <img :src="`/img/char/${current.id}/full.png`" class="view-image" :alt="current.name" />
+  <div class="view-root w-100">
+    <div v-if="!showState2" class="view h-100">
+      <img :src="`/img/char/${current.id}/full.png`" class="view-image mt-1" :alt="current.name" />
+    </div>
+    <div v-else>
+      <img
+        :src="`/img/char/${current.id}/state2_full.png`"
+        class="view-image-2"
+        :alt="current.name"
+      />
     </div>
     <BButtonGroup class="view-control">
       <BDropdown v-if="views.length > 1" dropup>
@@ -23,7 +30,7 @@ function changeTo(view: UnitView) {
           {{ view.name }}
         </BDropdownItem>
       </BDropdown>
-      <BButton :disabled="!current.hasState2" @click="showState2 = true">共振</BButton>
+      <BButton v-model:pressed="showState2" :disabled="!current.hasState2">共振</BButton>
     </BButtonGroup>
   </div>
 </template>
@@ -31,16 +38,19 @@ function changeTo(view: UnitView) {
 <style scoped>
 .view-root {
   position: fixed;
-}
-
-.view {
   height: calc(100vh - var(--anita-bottom-height));
 }
 
 .view-image {
   height: 100%;
   width: auto;
-  margin-top: 15px;
+}
+
+.view-image-2 {
+  position: fixed;
+  right: 0;
+  top: 0;
+  height: 100%;
 }
 
 .view-control {
@@ -50,17 +60,21 @@ function changeTo(view: UnitView) {
 
 @media (max-width: 768px) {
   .view-root {
-    position: relative;
+    position: sticky;
     margin: 0 auto;
-  }
-
-  .view {
     height: initial;
   }
 
   .view-image {
     width: 100%;
     height: auto;
+  }
+
+  .view-image-2 {
+    position: initial;
+    height: 20rem;
+    margin-left: -50%;
+    margin-top: -0.5rem;
   }
 }
 </style>
