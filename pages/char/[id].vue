@@ -40,12 +40,12 @@ useHead({
 .char-info {
   position: relative;
   z-index: 100;
+  backdrop-filter: blur(1rem);
 }
 
 @media (max-width: 768px) {
   .char-info {
     margin-top: 15px;
-    backdrop-filter: blur(1rem);
   }
 }
 </style>
