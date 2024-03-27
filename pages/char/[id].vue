@@ -4,7 +4,7 @@ import AnitaPanel from '~/components/common/AnitaPanel.vue';
 const route = useRoute();
 
 const id = route.params.id;
-const { data } = await useFetch<Unit>(`/data/char/${id}.json`);
+const { data } = await useFetch<Unit>(`/api/char`, { query: { id: id } });
 
 if (!data.value) {
   throw createError({
