@@ -2,5 +2,8 @@
 export default defineNuxtConfig({
   devtools: { enabled: true },
   modules: ['@bootstrap-vue-next/nuxt', '@nuxtjs/eslint-module'],
-  css: ['~/assets/scss/main.scss']
+  css: ['~/assets/scss/main.scss'],
+  nitro: {
+    serveStatic: true
+  }
 });
