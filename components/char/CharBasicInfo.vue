@@ -9,10 +9,9 @@ defineProps<{
 <template>
   <div class="unit-info mt-2 d-flex">
     <div class="unit-side d-flex align-items-center">
-      <img
-        class="img-fluid px-1 m-auto"
+      <NuxtPicture
         :src="`/img/icon/char/camp_${data.side.sort}.png`"
-        :alt="data.side.name"
+        :img-attrs="{ class: 'img-fluid px-1 m-auto', alt: data.side.name }"
       />
     </div>
     <div class="ms-2">
@@ -23,20 +22,23 @@ defineProps<{
         {{ data.nameEn }}
       </div>
       <div class="unit-rarity">
-        <img
+        <NuxtPicture
           :src="`/img/icon/common/rarity_${data.quality.toLowerCase()}.png`"
-          :alt="data.quality"
+          :img-attrs="{ alt: data.quality }"
         />
       </div>
       <div class="unit-line">
-        <img :src="`/img/icon/char/line_${lineName(data)}.png`" :alt="lineLocale(data)" />
+        <NuxtPicture
+          :src="`/img/icon/char/line_${lineName(data)}.png`"
+          :img-attrs="{ alt: lineLocale(data) }"
+        />
         <span>{{ lineLocale(data) }}</span>
       </div>
     </div>
   </div>
 </template>
 
-<style scoped lang="scss">
+<style lang="scss">
 .unit-side {
   height: 5rem;
   width: 4.8rem;

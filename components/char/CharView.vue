@@ -13,18 +13,20 @@ function changeTo(view: UnitView) {
 </script>
 
 <template>
-  <div class="view-root w-100">
+  <div class="char-view-root w-100">
     <div v-if="!showState2" class="view h-100">
-      <img :src="`/img/char/${current.id}/full.png`" class="view-image mt-1" :alt="current.name" />
-    </div>
-    <div v-else>
-      <img
-        :src="`/img/char/${current.id}/state2_full.png`"
-        class="view-image-2"
-        :alt="current.name"
+      <NuxtPicture
+        :src="`/img/char/${current.id}/full.png`"
+        :img-attrs="{ class: 'char-view-image mt-1', alt: current.name }"
       />
     </div>
-    <BButtonGroup class="view-control">
+    <div v-else>
+      <NuxtPicture
+        :src="`/img/char/${current.id}/state2_full.png`"
+        :img-attrs="{ class: 'char-view-image-2', alt: current.name }"
+      />
+    </div>
+    <BButtonGroup class="char-view-control">
       <BDropdown v-if="views.length > 1" dropup>
         <BDropdownItem v-for="view in views" :key="view.id" @click="changeTo(view)">
           {{ view.name }}
@@ -35,42 +37,42 @@ function changeTo(view: UnitView) {
   </div>
 </template>
 
-<style scoped>
-.view-root {
+<style>
+.char-view-root {
   position: fixed;
   height: calc(100vh - var(--anita-bottom-height));
 }
 
-.view-image {
+.char-view-image {
   height: 100%;
   width: auto;
 }
 
-.view-image-2 {
+.char-view-image-2 {
   position: fixed;
   right: 0;
   top: 0;
   height: 100%;
 }
 
-.view-control {
+.char-view-control {
   position: absolute;
   bottom: 0;
 }
 
 @media (max-width: 768px) {
-  .view-root {
+  .char-view-root {
     position: sticky;
     margin: 0 auto;
     height: initial;
   }
 
-  .view-image {
+  .char-view-image {
     width: 100%;
     height: auto;
   }
 
-  .view-image-2 {
+  .char-view-image-2 {
     position: initial;
     height: 20rem;
     margin-left: -50%;

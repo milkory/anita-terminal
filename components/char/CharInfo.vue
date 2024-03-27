@@ -13,15 +13,14 @@ const trustLv = ref(1);
       <div
         v-for="(attr, key) in attrMap"
         :key="attr.name"
-        class="info-attr d-flex justify-content-between"
+        class="char-info-attr d-flex justify-content-between"
       >
         <div>
-          <div class="info-attr-icon me-1">
-            <img
+          <div class="char-info-attr-icon me-1">
+            <NuxtPicture
               v-if="attr.icon"
-              class="img-fluid"
               :src="`/img/icon/char/attr_${attr.icon}.png`"
-              :alt="`${attr.name}`"
+              :img-attrs="{ class: 'img-fluid', alt: attr.name }"
             />
           </div>
           {{ attr.name }}
@@ -37,16 +36,16 @@ const trustLv = ref(1);
     <div class="d-flex mt-1">
       <div class="me-2 text-nowrap">等级</div>
       <input v-model.number="level" type="range" class="form-range" min="1" max="60" />
-      <div class="info-level ms-3 text-nowrap">Lv. {{ level }}</div>
+      <div class="char-info-level ms-3 text-nowrap">Lv. {{ level }}</div>
     </div>
     <div v-if="trustLv > 1" class="d-flex flex-wrap mt-2">
       <div
         v-for="(attr, key) in growthAttrMap"
         :key="attr.name"
-        class="info-attr d-flex justify-content-between"
+        class="char-info-attr d-flex justify-content-between"
       >
         <div>
-          <div class="info-attr-icon me-1">
+          <div class="char-info-attr-icon me-1">
             <img
               v-if="attr.icon"
               class="img-fluid"
@@ -56,16 +55,16 @@ const trustLv = ref(1);
           </div>
           {{ attr.name }}
         </div>
-        <div class="info-attr-plus me-3">
+        <div class="char-info-attr-plus me-3">
           +{{ attr.parse(data.growth[key] * Math.floor(trustLv / 2)) }}
         </div>
       </div>
     </div>
-    <div v-else class="info-attr-plus-placeholder text-center mt-2">滑动滑块查看默契加成</div>
+    <div v-else class="char-info-attr-placeholder text-center mt-2">滑动滑块查看默契加成</div>
     <div class="d-flex mt-1">
       <div class="me-2 text-nowrap">默契</div>
       <input v-model.number="trustLv" type="range" class="form-range" min="1" max="10" />
-      <div class="info-level ms-3 text-nowrap">Lv. {{ trustLv }}</div>
+      <div class="char-info-level ms-3 text-nowrap">Lv. {{ trustLv }}</div>
     </div>
   </BCard>
   <BCard variant="dark" class="mt-2">
@@ -81,32 +80,32 @@ const trustLv = ref(1);
   </BCard>
 </template>
 
-<style scoped>
-.info-attr {
+<style>
+.char-info-attr {
   width: 33.3%;
   height: 2em;
 }
 
-.info-attr-icon {
+.char-info-attr-icon {
   display: inline-block;
   width: 1.2em;
   vertical-align: 0.1em;
 }
 
-.info-attr-plus {
+.char-info-attr-plus {
   color: var(--bs-teal);
 }
 
-.info-attr-plus-placeholder {
+.char-info-attr-placeholder {
   height: 2em;
 }
 
-.info-level {
+.char-info-level {
   width: 3em;
 }
 
 @media (max-width: 768px) {
-  .info-attr {
+  .char-info-attr {
     width: 50%;
   }
 }
