@@ -8,7 +8,8 @@ const { data } = await useFetch<Unit>(`/api/char`, { query: { id: id } });
 
 if (!data.value) {
   throw createError({
-    statusCode: 404
+    statusCode: 404,
+    statusMessage: 'Not Found'
   });
 }
 

@@ -9,5 +9,8 @@ export default defineEventHandler(async (event) => {
       return await useStorage('assets:server').getItem(path);
     }
   }
-  return {};
+  throw createError({
+    statusCode: 404,
+    statusMessage: 'character not found'
+  });
 });

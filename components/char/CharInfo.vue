@@ -16,16 +16,16 @@ const trustLv = ref(1);
         class="char-info-attr d-flex justify-content-between"
       >
         <div>
-          <div class="char-info-attr-icon me-1">
+          <div :class="['char-info-attr-icon', 'me-1', isGrowth(attr) || 'only-pc']">
             <NuxtPicture
               v-if="attr.icon"
               :src="`/img/icon/char/attr_${attr.icon}.png`"
               :img-attrs="{ class: 'img-fluid', alt: attr.name }"
             />
           </div>
-          {{ attr.name }}
+          <span :class="isGrowth(attr) && 'only-pc'">{{ attr.name }}</span>
         </div>
-        <div v-if="attr instanceof UnitGrowthAttribute" class="me-3">
+        <div v-if="isGrowth(attr)" class="me-3">
           {{ attr.parse(attr.grow(data.attr[key], data.growth[key], level, trustLv)) }}
         </div>
         <div v-else class="me-3">
@@ -53,7 +53,6 @@ const trustLv = ref(1);
               :alt="`${attr.name}`"
             />
           </div>
-          {{ attr.name }}
         </div>
         <div class="char-info-attr-plus me-3">
           +{{ attr.parse(data.growth[key] * Math.floor(trustLv / 2)) }}
@@ -67,6 +66,7 @@ const trustLv = ref(1);
       <div class="char-info-level ms-3 text-nowrap">Lv. {{ trustLv }}</div>
     </div>
   </BCard>
+  <BCard title="生活技能" variant="dark" class="mt-2"> 123 </BCard>
   <BCard variant="dark" class="mt-2">
     <div>生日：{{ data.birthday }}</div>
     <div>性别：{{ data.gender }}</div>
@@ -102,11 +102,5 @@ const trustLv = ref(1);
 
 .char-info-level {
   width: 3em;
-}
-
-@media (max-width: 768px) {
-  .char-info-attr {
-    width: 50%;
-  }
 }
 </style>

@@ -91,3 +91,7 @@ export function lineLocale(unit: Unit) {
 export function lineName(unit: Unit) {
   return ['front', 'front', 'middle', 'back'][unit.line];
 }
+
+export function isGrowth(attr: UnitAttribute) {
+  return attr instanceof UnitGrowthAttribute;
+}
