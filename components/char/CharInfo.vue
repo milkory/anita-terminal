@@ -47,7 +47,7 @@ const trustLv = ref(1);
       <div
         v-for="(attr, key) in growthAttrMap"
         :key="attr.name"
-        class="char-attr d-flex justify-content-between"
+        class="char-attr d-flex justify-content-between col-4"
       >
         <div>
           <div class="char-attr-icon me-1">
