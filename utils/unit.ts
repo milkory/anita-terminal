@@ -86,12 +86,12 @@ export const growthAttrMap = {
   def: attrMap.def
 };
 
-export function lineLocale(unit: Unit) {
-  return ['前排', '前排', '中排', '后排'][unit.line];
+export function lineLocale(line: number) {
+  return ['前排', '前排', '中排', '后排'][line];
 }
 
-export function lineName(unit: Unit) {
-  return ['front', 'front', 'middle', 'back'][unit.line];
+export function lineName(line: number) {
+  return ['front', 'front', 'middle', 'back'][line];
 }
 
 export function isGrowth(attr: UnitAttribute) {
@@ -132,11 +132,3 @@ export interface UnitSummary {
   skill: string[];
   views: number[];
 }
-
-export const qualityColorMap = {
-  white: '#FFFFFF',
-  bBlue: '#377bf8',
-  purple: '#c895ff',
-  golden: '#ffb800',
-  orange: '#ff8a00'
-};

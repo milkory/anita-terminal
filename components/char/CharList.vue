@@ -29,6 +29,23 @@ defineEmits(['click-char']);
               :img-attrs="{ class: 'char-list-item-img' }"
             ></NuxtPicture>
             <div class="char-list-item-name text-light text-center">{{ char.name }}</div>
+            <div class="char-list-item-tip">
+              <div class="char-list-item-card d-flex">
+                <div
+                  v-for="(skill, i) in char.skill"
+                  :key="i"
+                  :class="['char-list-item-card-item', `card-${skill.toLowerCase()}`]"
+                ></div>
+              </div>
+              <div class="char-list-item-collap">
+                <NuxtPicture
+                  class="char-list-item-line"
+                  :src="`/img/icon/char/line_${lineName(char.line)}.png`"
+                  :img-attrs="{ alt: lineLocale(char.line) }"
+                  width="48px"
+                />
+              </div>
+            </div>
           </NuxtLink>
         </div>
       </div>
@@ -44,6 +61,19 @@ defineEmits(['click-char']);
 .char-list-item {
   max-width: 94px;
   flex: 1 0 10%;
+  background: var(--bs-gray-500);
+  border-radius: 0.4em;
+}
+
+.char-list-item-collap {
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+.char-list-item:hover {
+  .char-list-item-collap {
+    opacity: 1;
+  }
 }
 
 .char-list-item-img {
@@ -56,6 +86,42 @@ defineEmits(['click-char']);
   width: 94px;
   bottom: 0;
   border-radius: 0 0 0.4em 0.4em;
+}
+
+.char-list-item-card {
+  gap: 2px;
+  padding: 1px;
+  background: var(--bs-gray-900);
+}
+
+.char-list-item-card-item {
+  width: 1rem;
+  height: 0.2rem;
+}
+
+.card-red {
+  background: var(--card-color-red);
+}
+
+.card-blue {
+  background: var(--card-color-blue);
+}
+
+.card-green {
+  background: var(--card-color-green);
+}
+
+.card-yellow {
+  background: var(--card-color-yellow);
+}
+
+.card-purple {
+  background: var(--card-color-purple);
+}
+
+.char-list-item-tip {
+  position: absolute;
+  top: 0;
 }
 
 @media (max-width: 768px) {

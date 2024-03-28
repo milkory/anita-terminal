@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import type { Unit, lineLocale, lineName } from '~/utils/unit';
-
 defineProps<{
   data: Unit;
 }>();
@@ -29,10 +27,10 @@ defineProps<{
       </div>
       <div class="char-line">
         <NuxtPicture
-          :src="`/img/icon/char/line_${lineName(data)}.png`"
-          :img-attrs="{ alt: lineLocale(data) }"
+          :src="`/img/icon/char/line_${lineName(data.line)}.png`"
+          :img-attrs="{ alt: lineLocale(data.line) }"
         />
-        <span>{{ lineLocale(data) }}</span>
+        <span>{{ lineLocale(data.line) }}</span>
       </div>
     </div>
   </div>

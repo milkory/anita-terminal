@@ -58,6 +58,7 @@ const trustLv = ref(1);
               :alt="`${attr.name}`"
             />
           </div>
+          <span class="only-pc">{{ attr.name }}</span>
         </div>
         <div class="char-attr-plus me-3">
           +{{ attr.parse(data.growth[key] * Math.floor(trustLv / 2)) }}
