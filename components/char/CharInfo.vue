@@ -70,27 +70,27 @@ const trustLv = ref(1);
     <div
       v-for="(skill, i) in filterHomeSkill(data.homeSkill)"
       :key="i"
-      class="char-homesk d-flex col-md-6 col-12"
+      class="char-lifesk d-flex col-md-6 col-12"
     >
-      <div class="char-homesk-tag position-relative">
+      <div class="char-lifesk-tag position-relative">
         <img
-          class="char-homesk-img"
+          class="char-lifesk-img"
           :src="`/img/icon/char/life_skill_${skill.tag}.png`"
           :alt="homeSkillTagLocale(skill.tag)"
         />
-        <div class="char-homesk-label">{{ homeSkillTagLocale(skill.tag) }}</div>
+        <div class="char-lifesk-label">{{ homeSkillTagLocale(skill.tag) }}</div>
       </div>
-      <div class="char-homesk-detail ms-2">
+      <div class="char-lifesk-detail ms-2">
         <div
           v-for="(item, j) in filterHomeSkill(data.homeSkill, skill)"
           :key="j"
-          class="char-homesk-item"
+          class="char-lifesk-item"
         >
-          <div class="char-homesk-name fw-bold">
+          <div class="char-lifesk-name fw-bold">
             {{ item.name }}
             <BBadge class="ms-1" variant="danger">共振 {{ item.resonanceLv }}</BBadge>
           </div>
-          <div class="char-homesk-desc text-secondary">{{ item.desc }}</div>
+          <div class="char-lifesk-desc text-secondary">{{ item.desc }}</div>
         </div>
       </div>
     </div>
@@ -132,15 +132,19 @@ const trustLv = ref(1);
   width: 3em;
 }
 
-.char-homesk-img {
+.char-lifesk-img {
   width: 3.8rem;
 }
 
-.char-homesk-label {
+.char-lifesk-label {
   position: absolute;
   width: 100%;
   text-align: center;
   top: 4rem;
   font-size: 13px;
+}
+
+.char-lifesk-desc {
+  font-size: 14px;
 }
 </style>
