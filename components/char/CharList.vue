@@ -26,7 +26,7 @@ function filteredData(): UnitSummary[] {
           </BButton>
           <BFormInput v-model="searchInput" placeholder="搜索.." />
           <div class="only-m d-inline-block float-end ms-2">
-            <BButton @click="$emit('exit')">
+            <BButton variant="danger" @click="$emit('exit')">
               <Icon name="material-symbols:close-rounded" class="fs-5" />
             </BButton>
           </div>
