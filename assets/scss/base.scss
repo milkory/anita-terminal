@@ -26,6 +26,8 @@
   --quality-color-ssr: #ffb800;
   --quality-color-ur: #ff8a00;
 
+  --char-list-item-width: 94px;
+
   --bs-dark: #00000080;
   --bs-dark-rgb: 0, 0, 0;
   --bs-bg-opacity: 0.4;
@@ -34,6 +36,7 @@
 @media (max-width: 768px) {
   :root {
     --anita-bottom-height: 0px;
+    --char-list-item-width: 75px;
   }
 }
 

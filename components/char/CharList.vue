@@ -36,7 +36,7 @@ function filteredData(): UnitSummary[] {
         </BCollapse>
       </div>
       <div class="col-md-9 overflow-y-auto h-100 mt-2">
-        <div class="char-list-grid d-flex flex-wrap">
+        <div class="char-list-grid d-grid">
           <NuxtLink
             v-for="char in filteredData()"
             :key="char.id"
@@ -47,7 +47,6 @@ function filteredData(): UnitSummary[] {
             <div class="char-list-item-cover"></div>
             <NuxtPicture
               :src="`/img/char/${char.views[0]}/face.png`"
-              width="94px"
               :img-attrs="{ class: 'char-list-item-img' }"
             ></NuxtPicture>
             <div class="char-list-item-name text-light text-center">{{ char.name }}</div>
@@ -78,10 +77,11 @@ function filteredData(): UnitSummary[] {
 <style lang="scss">
 .char-list-grid {
   gap: 1rem;
+  grid-template-columns: repeat(auto-fill, minmax(var(--char-list-item-width), 1fr));
 }
 
 .char-list-item {
-  max-width: 94px;
+  max-width: var(--char-list-item-width);
   flex: 1 0 10%;
   border-radius: 0.4em;
   overflow: hidden;
@@ -144,6 +144,7 @@ function filteredData(): UnitSummary[] {
 }
 
 .char-list-item-img {
+  width: var(--char-list-item-width);
   border-radius: 0.4em;
   transition: scale 0.2s ease;
 }
@@ -151,7 +152,7 @@ function filteredData(): UnitSummary[] {
 .char-list-item-name {
   position: absolute;
   background: #000000c0;
-  width: 94px;
+  width: var(--char-list-item-width);
   bottom: 0;
   border-radius: 0 0 0.4em 0.4em;
   z-index: 30;
@@ -196,16 +197,16 @@ function filteredData(): UnitSummary[] {
 
 @media (max-width: 768px) {
   .char-list-item {
-    min-width: 75px;
-    max-width: 75px;
+    min-width: var(--char-list-item-width);
+    max-width: var(--char-list-item-width);
   }
 
   .char-list-item-img {
-    width: 75px;
+    width: var(--char-list-item-width);
   }
 
   .char-list-item-name {
-    width: 75px;
+    width: var(--char-list-item-width);
     font-size: 13px;
   }
 }
