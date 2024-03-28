@@ -119,8 +119,16 @@ export function filterHomeSkill(skills: UnitHomeSkill[], base?: UnitHomeSkill) {
     while (base.nextIndex > 0) {
       base = skills[base.nextIndex - 1];
       result.push(base);
-      console.log(base);
     }
     return result;
   }
+}
+
+export interface UnitSummary {
+  id: number;
+  name: string;
+  quality: string;
+  line: number;
+  skill: string[];
+  views: number[];
 }

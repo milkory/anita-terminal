@@ -1,6 +1,6 @@
 <template>
   <div class="panel px-4 py-3">
-    <div class="content">
+    <div class="content h-100">
       <slot />
     </div>
   </div>
@@ -11,6 +11,7 @@
   background: #00000090;
   box-shadow: black 0px 1px 3px;
   border-radius: 8px;
+  backdrop-filter: blur(1rem);
 }
 .content {
   color: var(--anita-color-text);

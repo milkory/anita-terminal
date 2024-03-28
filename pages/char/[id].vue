@@ -4,9 +4,14 @@ import AnitaPanel from '~/components/common/AnitaPanel.vue';
 const route = useRoute();
 
 const id = route.params.id;
-const { data } = await useFetch<Unit>(`/api/char`, { query: { id: id } });
+const { data } = await useFetch<Unit>('/api/char', { query: { id: id } });
+const { data: summary } = await useFetch('/api/char', {
+  query: { type: 'summary' }
+});
 
-if (!data.value) {
+const doShowList = ref(false);
+
+if (!data.value || !summary.value) {
   throw createError({
     statusCode: 404,
     statusMessage: 'Not Found'
@@ -16,24 +21,55 @@ if (!data.value) {
 useHead({
   title: data.value.name
 });
+
+function showList() {
+  doShowList.value = true;
+  document.body.style.overflow = 'clip';
+}
+
+function hideList() {
+  doShowList.value = false;
+  document.body.style.overflow = '';
+}
 </script>
 
 <template>
-  <div v-if="data" class="row p-2">
-    <div class="col-md-6">
-      <CharView width="652px" :views="data['views']" />
+  <div>
+    <div v-if="data" class="row p-2">
+      <div class="col-md-6">
+        <BButtonGroup class="char-list-btn">
+          <BButton @click="showList()">
+            <Icon
+              class="char-list-icon fs-5"
+              name="material-symbols:format-list-bulleted-rounded"
+            />
+            角色列表
+          </BButton>
+        </BButtonGroup>
+        <CharView width="652px" :views="data['views']" />
+      </div>
+      <AnitaPanel class="char-info col-md-6">
+        <CharBasicInfo :data="data" />
+        <BTabs class="mt-2" pills nav-class="mb-2">
+          <BTab title="信息"><CharInfo :data="data" /></BTab>
+          <BTab title="技能">TODO</BTab>
+          <BTab title="共振">TODO</BTab>
+          <BTab title="觉醒">TODO</BTab>
+          <BTab title="档案">TODO</BTab>
+          <BTab title="录音">TODO</BTab>
+        </BTabs>
+      </AnitaPanel>
     </div>
-    <AnitaPanel class="char-info col-md-6">
-      <CharBasicInfo :data="data" />
-      <BTabs class="mt-2" pills nav-class="mb-2">
-        <BTab title="信息"><CharInfo :data="data" /></BTab>
-        <BTab title="技能">TODO</BTab>
-        <BTab title="共振">TODO</BTab>
-        <BTab title="觉醒">TODO</BTab>
-        <BTab title="档案">TODO</BTab>
-        <BTab title="录音">TODO</BTab>
-      </BTabs>
-    </AnitaPanel>
+    <div v-if="doShowList" class="h-screen fixed-top" @click="hideList()"></div>
+    <Transition name="char-list">
+      <div v-if="doShowList" class="char-list-wrapper h-full container-xl fixed-top">
+        <CharList
+          :data="summary as UnitSummary[]"
+          class="char-list mt-4"
+          @click-char="hideList()"
+        />
+      </div>
+    </Transition>
   </div>
 </template>
 
@@ -44,9 +80,36 @@ useHead({
   backdrop-filter: blur(1rem);
 }
 
+.char-list-btn {
+  position: fixed;
+  top: 4rem;
+  z-index: 90;
+}
+
+.char-list-wrapper {
+  max-width: 1400px;
+  z-index: 3000;
+}
+
 @media (max-width: 768px) {
   .char-info {
     margin-top: 15px;
+  }
+}
+
+.char-list-enter-active,
+.char-list-leave-active {
+  transition-duration: 0.3s;
+  .char-list {
+    transition: all 0.3s ease-out;
+  }
+}
+
+.char-list-enter-from,
+.char-list-leave-to {
+  .char-list {
+    opacity: 0;
+    margin-top: -10rem !important;
   }
 }
 </style>

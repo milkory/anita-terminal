@@ -5,24 +5,20 @@ body {
   overflow-y: scroll;
 }
 
-body::-webkit-scrollbar {
+*::-webkit-scrollbar {
   width: 4px;
   height: 4px;
 }
 
-body::-webkit-scrollbar-thumb {
+*::-webkit-scrollbar-thumb {
   background-color: #333;
 }
 
-body::-webkit-scrollbar-track {
+*::-webkit-scrollbar-track {
   background-color: #00000040;
 }
 
-.screen-height {
-  height: calc(100vh - var(--anita-bottom-height));
-}
-
-.full-screen {
+.h-screen {
   position: fixed;
   top: 0;
   height: 100vh;
