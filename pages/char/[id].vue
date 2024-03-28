@@ -63,11 +63,11 @@ function hideList() {
       </AnitaPanel>
     </div>
     <Transition>
-      <div v-if="doShowList" class="char-list-shadow h-screen fixed-top" @click="hideList()"></div>
+      <div v-if="doShowList" class="char-list-cover h-screen fixed-top" @click="hideList()"></div>
     </Transition>
     <Transition name="char-list">
       <div v-if="doShowList" class="char-list-wrapper container-xl fixed-top py-3">
-        <CharList :data="summary as UnitSummary[]" class="char-list" @click-char="hideList()" />
+        <CharList :data="summary as UnitSummary[]" class="char-list" @exit="hideList()" />
       </div>
     </Transition>
   </div>
@@ -80,7 +80,7 @@ function hideList() {
   backdrop-filter: blur(1rem);
 }
 
-.char-list-shadow {
+.char-list-cover {
   background: #00000090;
 }
 

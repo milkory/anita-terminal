@@ -21,7 +21,7 @@ defineProps<{
       </div>
       <div class="char-rarity">
         <NuxtPicture
-          :src="`/img/icon/common/rarity_${data.quality.toLowerCase()}.png`"
+          :src="`/img/icon/common/rarity_${data.quality}.png`"
           :img-attrs="{ alt: data.quality }"
         />
       </div>

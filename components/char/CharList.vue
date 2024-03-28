@@ -5,7 +5,7 @@ defineProps<{
   data: UnitSummary[];
 }>();
 
-defineEmits(['click-char']);
+defineEmits(['exit']);
 </script>
 
 <template>
@@ -13,6 +13,9 @@ defineEmits(['click-char']);
     <div class="char-list row h-100 pb-5">
       <div class="col-md-3">
         <BButton>123</BButton>
+        <div class="d-inline-block float-end">
+          <BButton class="only-m" @click="$emit('exit')"> × </BButton>
+        </div>
       </div>
       <div class="col-md-9 overflow-y-auto h-100 mt-2">
         <div class="char-list-grid d-flex flex-wrap">
@@ -20,9 +23,10 @@ defineEmits(['click-char']);
             v-for="char in data"
             :key="char.id"
             :to="`/char/${char.id - 10000000}`"
-            class="char-list-item position-relative"
-            @click="$emit('click-char')"
+            :class="['char-list-item', 'position-relative', `quality-${char.quality}`]"
+            @click="$emit('exit')"
           >
+            <div class="char-list-item-cover"></div>
             <NuxtPicture
               :src="`/img/char/${char.views[0]}/face.png`"
               width="94px"
@@ -34,7 +38,7 @@ defineEmits(['click-char']);
                 <div
                   v-for="(skill, i) in char.skill"
                   :key="i"
-                  :class="['char-list-item-card-item', `card-${skill.toLowerCase()}`]"
+                  :class="['char-list-item-card-item', `card-${skill}`]"
                 ></div>
               </div>
               <div class="char-list-item-collap">
@@ -61,8 +65,45 @@ defineEmits(['click-char']);
 .char-list-item {
   max-width: 94px;
   flex: 1 0 10%;
-  background: var(--bs-gray-500);
   border-radius: 0.4em;
+  overflow: hidden;
+
+  &.quality-n {
+    background: var(--quality-color-n);
+  }
+
+  &.quality-r {
+    background: var(--quality-color-r);
+  }
+
+  &.quality-sr {
+    background: var(--quality-color-sr);
+  }
+
+  &.quality-ssr {
+    background: var(--quality-color-ssr);
+  }
+
+  &.quality-ur {
+    background: var(--quality-color-ur);
+  }
+}
+
+.char-list-item-cover {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: #000000a0;
+  border-radius: 0.4em;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+  z-index: 10;
+}
+
+.char-list-item-tip {
+  position: absolute;
+  top: 0;
+  z-index: 20;
 }
 
 .char-list-item-collap {
@@ -71,13 +112,22 @@ defineEmits(['click-char']);
 }
 
 .char-list-item:hover {
+  .char-list-item-cover {
+    opacity: 1;
+  }
+
   .char-list-item-collap {
     opacity: 1;
+  }
+
+  .char-list-item-img {
+    scale: 1.1;
   }
 }
 
 .char-list-item-img {
   border-radius: 0.4em;
+  transition: scale 0.2s ease;
 }
 
 .char-list-item-name {
@@ -86,6 +136,7 @@ defineEmits(['click-char']);
   width: 94px;
   bottom: 0;
   border-radius: 0 0 0.4em 0.4em;
+  z-index: 30;
 }
 
 .char-list-item-card {
@@ -119,13 +170,9 @@ defineEmits(['click-char']);
   background: var(--card-color-purple);
 }
 
-.char-list-item-tip {
-  position: absolute;
-  top: 0;
-}
-
 @media (max-width: 768px) {
   .char-list-item {
+    min-width: 75px;
     max-width: 75px;
   }
 
