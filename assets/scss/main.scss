@@ -21,11 +21,11 @@ body {
 .h-screen {
   position: fixed;
   top: 0;
-  height: 100vh;
+  height: 100dvh;
 }
 
 .h-full {
-  height: calc(100vh - var(--anita-bottom-height));
+  height: calc(100dvh - var(--anita-bottom-height));
 }
 
 .mb-nav {
