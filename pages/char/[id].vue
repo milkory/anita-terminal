@@ -60,14 +60,12 @@ function hideList() {
         </BTabs>
       </AnitaPanel>
     </div>
-    <div v-if="doShowList" class="h-screen fixed-top" @click="hideList()"></div>
+    <Transition>
+      <div v-if="doShowList" class="char-list-shadow h-screen fixed-top" @click="hideList()"></div>
+    </Transition>
     <Transition name="char-list">
-      <div v-if="doShowList" class="char-list-wrapper h-full container-xl fixed-top">
-        <CharList
-          :data="summary as UnitSummary[]"
-          class="char-list mt-4"
-          @click-char="hideList()"
-        />
+      <div v-if="doShowList" class="char-list-wrapper container-xl fixed-top py-3">
+        <CharList :data="summary as UnitSummary[]" class="char-list" @click-char="hideList()" />
       </div>
     </Transition>
   </div>
@@ -80,6 +78,14 @@ function hideList() {
   backdrop-filter: blur(1rem);
 }
 
+.char-list-shadow {
+  background: #00000090;
+}
+
+.char-list-wrapper {
+  height: calc(100vh - var(--anita-bottom-height));
+}
+
 .char-list-btn {
   position: fixed;
   top: 4rem;
@@ -87,7 +93,7 @@ function hideList() {
 }
 
 .char-list-wrapper {
-  max-width: 1400px;
+  max-width: 1300px;
   z-index: 3000;
 }
 

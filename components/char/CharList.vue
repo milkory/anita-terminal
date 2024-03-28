@@ -10,23 +10,27 @@ defineEmits(['click-char']);
 
 <template>
   <AnitaPanel class="char-list-panel h-100">
-    <div class="char-list row h-100">
-      <div class="col-md-3">FILTERS</div>
-      <div class="char-list-grid col-md-9 overflow-y-auto h-100 d-flex flex-wrap">
-        <NuxtLink
-          v-for="char in data"
-          :key="char.id"
-          :to="`/char/${char.id}`"
-          class="char-list-item position-relative"
-          @click="$emit('click-char')"
-        >
-          <NuxtPicture
-            :src="`/img/char/${char.views[0]}/face.png`"
-            width="94px"
-            :img-attrs="{ class: 'char-list-item-img' }"
-          ></NuxtPicture>
-          <div class="char-list-item-name text-light text-center">{{ char.name }}</div>
-        </NuxtLink>
+    <div class="char-list row h-100 pb-5">
+      <div class="col-md-3">
+        <BButton>123</BButton>
+      </div>
+      <div class="col-md-9 overflow-y-auto h-100 mt-2">
+        <div class="char-list-grid d-flex flex-wrap">
+          <NuxtLink
+            v-for="char in data"
+            :key="char.id"
+            :to="`/char/${char.id}`"
+            class="char-list-item position-relative"
+            @click="$emit('click-char')"
+          >
+            <NuxtPicture
+              :src="`/img/char/${char.views[0]}/face.png`"
+              width="94px"
+              :img-attrs="{ class: 'char-list-item-img' }"
+            ></NuxtPicture>
+            <div class="char-list-item-name text-light text-center">{{ char.name }}</div>
+          </NuxtLink>
+        </div>
       </div>
     </div>
   </AnitaPanel>
@@ -38,7 +42,8 @@ defineEmits(['click-char']);
 }
 
 .char-list-item {
-  width: 94px;
+  max-width: 94px;
+  flex: 1 0 10%;
 }
 
 .char-list-item-img {
@@ -55,7 +60,7 @@ defineEmits(['click-char']);
 
 @media (max-width: 768px) {
   .char-list-item {
-    width: 75px;
+    max-width: 75px;
   }
 
   .char-list-item-img {
