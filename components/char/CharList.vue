@@ -1,26 +1,44 @@
 <script setup lang="ts">
 import AnitaPanel from '../common/AnitaPanel.vue';
 
-defineProps<{
+const props = defineProps<{
   data: UnitSummary[];
 }>();
 
 defineEmits(['exit']);
+
+const searchInput = ref('');
+
+function filteredData(): UnitSummary[] {
+  return props.data.filter((it) => {
+    return it.name.includes(searchInput.value);
+  });
+}
 </script>
 
 <template>
   <AnitaPanel class="char-list-panel h-100">
     <div class="char-list row h-100 pb-5">
       <div class="col-md-3">
-        <BButton>123</BButton>
-        <div class="d-inline-block float-end">
-          <BButton class="only-m" @click="$emit('exit')"> × </BButton>
+        <div class="d-flex">
+          <BButton v-b-toggle.char-list-filter class="only-m me-2">
+            <Icon name="material-symbols:filter-alt" class="fs-5" />
+          </BButton>
+          <BFormInput v-model="searchInput" placeholder="搜索.." />
+          <div class="only-m d-inline-block float-end ms-2">
+            <BButton @click="$emit('exit')">
+              <Icon name="material-symbols:close-rounded" class="fs-5" />
+            </BButton>
+          </div>
         </div>
+        <BCollapse id="char-list-filter">
+          <div class="mt-2">123</div>
+        </BCollapse>
       </div>
       <div class="col-md-9 overflow-y-auto h-100 mt-2">
         <div class="char-list-grid d-flex flex-wrap">
           <NuxtLink
-            v-for="char in data"
+            v-for="char in filteredData()"
             :key="char.id"
             :to="`/char/${char.id - 10000000}`"
             :class="['char-list-item', 'position-relative', `quality-${char.quality}`]"
@@ -168,6 +186,12 @@ defineEmits(['exit']);
 
 .card-purple {
   background: var(--card-color-purple);
+}
+
+@media (min-width: 768px) {
+  #char-list-filter {
+    display: block;
+  }
 }
 
 @media (max-width: 768px) {
