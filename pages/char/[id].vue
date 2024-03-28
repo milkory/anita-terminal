@@ -3,8 +3,10 @@ import AnitaPanel from '~/components/common/AnitaPanel.vue';
 
 const route = useRoute();
 
-const id = route.params.id;
-const { data } = await useFetch<Unit>('/api/char', { query: { id: id } });
+const id = parseInt(route.params.id.toString());
+const { data } = await useFetch<Unit>('/api/char', {
+  query: { id: id < 10000000 ? id + 10000000 : id }
+});
 const { data: summary } = await useFetch('/api/char', {
   query: { type: 'summary' }
 });

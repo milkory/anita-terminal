@@ -19,7 +19,7 @@ defineEmits(['click-char']);
           <NuxtLink
             v-for="char in data"
             :key="char.id"
-            :to="`/char/${char.id}`"
+            :to="`/char/${char.id - 10000000}`"
             class="char-list-item position-relative"
             @click="$emit('click-char')"
           >

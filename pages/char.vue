@@ -3,7 +3,7 @@ definePageMeta({
   middleware: [
     function (to) {
       if (to.path == '/char') {
-        return navigateTo('/char/10000739');
+        return navigateTo('/char/739');
       }
     }
   ]

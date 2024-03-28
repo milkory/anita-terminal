@@ -132,3 +132,11 @@ export interface UnitSummary {
   skill: string[];
   views: number[];
 }
+
+export const qualityColorMap = {
+  white: '#FFFFFF',
+  bBlue: '#377bf8',
+  purple: '#c895ff',
+  golden: '#ffb800',
+  orange: '#ff8a00'
+};
