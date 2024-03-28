@@ -7,7 +7,7 @@ defineProps<{
 </script>
 
 <template>
-  <div class="char-info mt-2 d-flex">
+  <div class="char-basic-info mt-2 d-flex">
     <div class="char-side d-flex align-items-center">
       <NuxtPicture
         :src="`/img/icon/char/camp_${data.side.sort}.png`"

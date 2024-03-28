@@ -13,7 +13,12 @@ const trustLv = ref(1);
       <div
         v-for="(attr, key) in attrMap"
         :key="attr.name"
-        class="char-attr d-flex justify-content-between"
+        :class="[
+          'char-attr',
+          'd-flex',
+          'justify-content-between',
+          isGrowth(attr) ? 'col-4' : ['col-6', 'col-md-4']
+        ]"
       >
         <div>
           <div :class="['char-attr-icon', 'me-1', isGrowth(attr) || 'only-pc']">
@@ -110,7 +115,6 @@ const trustLv = ref(1);
 
 <style>
 .char-attr {
-  width: 33.3%;
   height: 2em;
 }
 
