@@ -21,7 +21,7 @@ useHead({
 <template>
   <div v-if="data" class="row p-2">
     <div class="col-md-6">
-      <CharView :views="data['views']" />
+      <CharView width="652px" :views="data['views']" />
     </div>
     <AnitaPanel class="char-info col-md-6">
       <CharBasicInfo :data="data" />

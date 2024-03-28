@@ -17,6 +17,8 @@ export interface Unit {
   identity: string;
   ability: string;
   resume: UnitResume[];
+
+  homeSkill: UnitHomeSkill[];
 }
 
 export interface UnitView {
@@ -94,4 +96,31 @@ export function lineName(unit: Unit) {
 
 export function isGrowth(attr: UnitAttribute) {
   return attr instanceof UnitGrowthAttribute;
+}
+
+export interface UnitHomeSkill {
+  id: number;
+  name: string;
+  desc: string;
+  tag: number;
+  nextIndex: number;
+  resonanceLv: number;
+}
+
+export function homeSkillTagLocale(tag: number) {
+  return ['贸易', '产出', '家园', '其他'][tag - 1];
+}
+
+export function filterHomeSkill(skills: UnitHomeSkill[], base?: UnitHomeSkill) {
+  if (!base) {
+    return skills.filter((it) => it.nextIndex != -1);
+  } else {
+    const result = [base];
+    while (base.nextIndex > 0) {
+      base = skills[base.nextIndex - 1];
+      result.push(base);
+      console.log(base);
+    }
+    return result;
+  }
 }

@@ -13,10 +13,10 @@ const trustLv = ref(1);
       <div
         v-for="(attr, key) in attrMap"
         :key="attr.name"
-        class="char-info-attr d-flex justify-content-between"
+        class="char-attr d-flex justify-content-between"
       >
         <div>
-          <div :class="['char-info-attr-icon', 'me-1', isGrowth(attr) || 'only-pc']">
+          <div :class="['char-attr-icon', 'me-1', isGrowth(attr) || 'only-pc']">
             <NuxtPicture
               v-if="attr.icon"
               :src="`/img/icon/char/attr_${attr.icon}.png`"
@@ -36,16 +36,16 @@ const trustLv = ref(1);
     <div class="d-flex mt-1">
       <div class="me-2 text-nowrap">等级</div>
       <input v-model.number="level" type="range" class="form-range" min="1" max="60" />
-      <div class="char-info-level ms-3 text-nowrap">Lv. {{ level }}</div>
+      <div class="char-level ms-3 text-nowrap">Lv. {{ level }}</div>
     </div>
     <div v-if="trustLv > 1" class="d-flex flex-wrap mt-2">
       <div
         v-for="(attr, key) in growthAttrMap"
         :key="attr.name"
-        class="char-info-attr d-flex justify-content-between"
+        class="char-attr d-flex justify-content-between"
       >
         <div>
-          <div class="char-info-attr-icon me-1">
+          <div class="char-attr-icon me-1">
             <img
               v-if="attr.icon"
               class="img-fluid"
@@ -54,19 +54,47 @@ const trustLv = ref(1);
             />
           </div>
         </div>
-        <div class="char-info-attr-plus me-3">
+        <div class="char-attr-plus me-3">
           +{{ attr.parse(data.growth[key] * Math.floor(trustLv / 2)) }}
         </div>
       </div>
     </div>
-    <div v-else class="char-info-attr-placeholder text-center mt-2">滑动滑块查看默契加成</div>
+    <div v-else class="char-attr-placeholder text-center mt-2">滑动滑块查看默契加成</div>
     <div class="d-flex mt-1">
       <div class="me-2 text-nowrap">默契</div>
       <input v-model.number="trustLv" type="range" class="form-range" min="1" max="10" />
-      <div class="char-info-level ms-3 text-nowrap">Lv. {{ trustLv }}</div>
+      <div class="char-level ms-3 text-nowrap">Lv. {{ trustLv }}</div>
     </div>
   </BCard>
-  <BCard title="生活技能" variant="dark" class="mt-2"> 123 </BCard>
+  <BCard variant="dark" class="mt-2" body-class="d-flex flex-wrap">
+    <div
+      v-for="(skill, i) in filterHomeSkill(data.homeSkill)"
+      :key="i"
+      class="char-homesk d-flex col-md-6 col-12"
+    >
+      <div class="char-homesk-tag position-relative">
+        <img
+          class="char-homesk-img"
+          :src="`/img/icon/char/life_skill_${skill.tag}.png`"
+          :alt="homeSkillTagLocale(skill.tag)"
+        />
+        <div class="char-homesk-label">{{ homeSkillTagLocale(skill.tag) }}</div>
+      </div>
+      <div class="char-homesk-detail ms-2">
+        <div
+          v-for="(item, j) in filterHomeSkill(data.homeSkill, skill)"
+          :key="j"
+          class="char-homesk-item"
+        >
+          <div class="char-homesk-name fw-bold">
+            {{ item.name }}
+            <BBadge class="ms-1" variant="danger">共振 {{ item.resonanceLv }}</BBadge>
+          </div>
+          <div class="char-homesk-desc text-secondary">{{ item.desc }}</div>
+        </div>
+      </div>
+    </div>
+  </BCard>
   <BCard variant="dark" class="mt-2">
     <div>生日：{{ data.birthday }}</div>
     <div>性别：{{ data.gender }}</div>
@@ -81,26 +109,38 @@ const trustLv = ref(1);
 </template>
 
 <style>
-.char-info-attr {
+.char-attr {
   width: 33.3%;
   height: 2em;
 }
 
-.char-info-attr-icon {
+.char-attr-icon {
   display: inline-block;
   width: 1.2em;
   vertical-align: 0.1em;
 }
 
-.char-info-attr-plus {
+.char-attr-plus {
   color: var(--bs-teal);
 }
 
-.char-info-attr-placeholder {
+.char-attr-placeholder {
   height: 2em;
 }
 
-.char-info-level {
+.char-level {
   width: 3em;
+}
+
+.char-homesk-img {
+  width: 3.8rem;
+}
+
+.char-homesk-label {
+  position: absolute;
+  width: 100%;
+  text-align: center;
+  top: 4rem;
+  font-size: 13px;
 }
 </style>

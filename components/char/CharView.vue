@@ -1,5 +1,6 @@
 <script setup lang="ts">
 const props = defineProps<{
+  width: string;
   views: UnitView[];
 }>();
 
@@ -13,8 +14,8 @@ function changeTo(view: UnitView) {
 </script>
 
 <template>
-  <div class="char-view-root w-100">
-    <div v-if="!showState2" class="view h-100">
+  <div class="char-view-root" :style="{ width: width }">
+    <div v-if="!showState2" class="char-view h-100">
       <NuxtPicture
         :src="`/img/char/${current.id}/full.png`"
         :img-attrs="{ class: 'char-view-image mt-1', alt: current.name }"
@@ -35,12 +36,20 @@ function changeTo(view: UnitView) {
       <BButton v-model:pressed="showState2" :disabled="!current.hasState2">共振</BButton>
     </BButtonGroup>
   </div>
+  <div class="char-view-block only-m"></div>
 </template>
 
 <style>
 .char-view-root {
   position: fixed;
   height: calc(100vh - var(--anita-bottom-height));
+}
+
+.char-view {
+  position: absolute;
+  left: 50%;
+  translate: -50%;
+  text-align: center;
 }
 
 .char-view-image {
@@ -60,16 +69,25 @@ function changeTo(view: UnitView) {
   bottom: 0;
 }
 
+.char-view-block {
+  height: 512px;
+}
+
 @media (max-width: 768px) {
   .char-view-root {
-    position: sticky;
+    position: fixed;
     margin: 0 auto;
-    height: initial;
+    width: 100% !important;
+    height: 506px;
+  }
+
+  .char-view {
+    width: 100%;
+    margin-left: -20px;
   }
 
   .char-view-image {
-    width: 100%;
-    height: auto;
+    height: 500px;
   }
 
   .char-view-image-2 {
