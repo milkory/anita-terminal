@@ -79,11 +79,8 @@ function changeTo(view: UnitView) {
     margin: 0 auto;
     width: 100% !important;
     height: 506px;
-  }
-
-  .char-view {
-    width: 100%;
-    margin-left: -20px;
+    left: 50%;
+    translate: -50%;
   }
 
   .char-view-image {
@@ -95,6 +92,9 @@ function changeTo(view: UnitView) {
     height: 20rem;
     margin-left: -50%;
     margin-top: -0.5rem;
+  }
+  .char-view-control {
+    left: 1rem;
   }
 }
 </style>
