@@ -85,18 +85,15 @@ function hideList() {
 }
 
 .char-list-wrapper {
-  height: calc(100vh - var(--anita-bottom-height));
+  height: calc(100dvh - var(--anita-bottom-height));
+  max-width: 1300px;
+  z-index: 3000;
 }
 
 .char-list-btn {
   position: fixed;
   top: 4rem;
   z-index: 90;
-}
-
-.char-list-wrapper {
-  max-width: 1300px;
-  z-index: 3000;
 }
 
 @media (max-width: 768px) {
