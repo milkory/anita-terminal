@@ -57,11 +57,10 @@ function filteredData(): UnitSummary[] {
                 ></div>
               </div>
               <div class="char-list-item-collap">
-                <NuxtPicture
+                <img
                   class="char-list-item-line"
                   :src="`/img/icon/char/line_${lineName(char.line)}.png`"
-                  :img-attrs="{ alt: lineLocale(char.line) }"
-                  width="48px"
+                  :alt="lineLocale(char.line)"
                 />
               </div>
             </div>
@@ -165,6 +164,10 @@ function filteredData(): UnitSummary[] {
 
 .card-purple {
   background: var(--card-color-purple);
+}
+
+.char-list-item-line {
+  width: 48px;
 }
 
 @media (min-width: 768px) {

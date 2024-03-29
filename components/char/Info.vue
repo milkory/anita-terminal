@@ -23,10 +23,11 @@ const trustLv = ref(1);
         >
           <div>
             <div :class="['char-attr-icon', 'me-1', isGrowth(attr) || 'only-pc']">
-              <NuxtPicture
+              <img
                 v-if="attr.icon"
                 :src="`/img/icon/char/attr_${attr.icon}.png`"
-                :img-attrs="{ class: 'img-fluid', alt: attr.name }"
+                class="img-fluid"
+                :alt="attr.name"
               />
             </div>
             <span :class="isGrowth(attr) && 'only-pc'">{{ attr.name }}</span>
@@ -114,7 +115,7 @@ const trustLv = ref(1);
         <div class="char-food-info ms-3 d-flex flex-column">
           <div class="char-food-name fw-bold">
             {{ food.name }}
-            <IFatigue class="fs-small ms-3 align-middle h-100">-{{ food.energy }}</IFatigue>
+            <IFatigue class="fs-small ms-md-3 align-middle h-100">-{{ food.energy }}</IFatigue>
           </div>
           <div class="char-food-des flex-grow-1 text-secondary fs-small">{{ food.letter }}</div>
           <div class="char-food-expire">

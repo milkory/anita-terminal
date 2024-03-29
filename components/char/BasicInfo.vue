@@ -7,9 +7,10 @@ defineProps<{
 <template>
   <div class="char-basic-info mt-2 d-flex">
     <div class="char-side d-flex align-items-center">
-      <NuxtPicture
+      <img
         :src="`/img/icon/char/camp_${data.side.sort}.png`"
-        :img-attrs="{ class: 'img-fluid px-1 m-auto', alt: data.side.name }"
+        class="img-fluid px-1 m-auto"
+        :alt="data.side.name"
       />
     </div>
     <div class="ms-2">
@@ -20,16 +21,10 @@ defineProps<{
         {{ data.nameEn }}
       </div>
       <div class="char-rarity">
-        <NuxtPicture
-          :src="`/img/icon/common/rarity_${data.quality}.png`"
-          :img-attrs="{ alt: data.quality }"
-        />
+        <img :src="`/img/icon/common/rarity_${data.quality}.png`" :alt="data.quality" />
       </div>
       <div class="char-line">
-        <NuxtPicture
-          :src="`/img/icon/char/line_${lineName(data.line)}.png`"
-          :img-attrs="{ alt: lineLocale(data.line) }"
-        />
+        <img :src="`/img/icon/char/line_${lineName(data.line)}.png`" :alt="lineLocale(data.line)" />
         <span>{{ lineLocale(data.line) }}</span>
       </div>
     </div>
