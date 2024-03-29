@@ -3,12 +3,19 @@ useHead({
   titleTemplate: (chunk) => (chunk ? `${chunk} / Anita Terminal` : 'Anita Terminal')
 });
 
-const background = useBackground();
+const image = useImage();
+
+const bgImage = useBackground();
+const bgStyle = computed(() => {
+  return {
+    backgroundImage: `url('${image(bgImage.value, { quality: 80, format: 'webp' })}')`
+  };
+});
 </script>
 
 <template>
   <NuxtLoadingIndicator />
-  <div id="background" :style="`background-image: url(${background});`"></div>
+  <div id="background" :style="bgStyle"></div>
   <SiteNav>
     <template #left>
       <SiteNavItem icon="/img/icon/nav/char.png" name="角色" to="/char" />
