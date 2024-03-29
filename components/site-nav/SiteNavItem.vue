@@ -7,16 +7,16 @@ defineProps<{
 </script>
 
 <template>
-  <NuxtLink class="item" :to="to">
-    <img v-if="icon" :src="icon" :alt="name" class="icon" />
-    <div class="name">
+  <NuxtLink class="site-nav-item" :to="to">
+    <img v-if="icon" :src="icon" :alt="name" class="site-nav-item-icon" />
+    <div class="site-nav-item-name">
       {{ name }}
     </div>
   </NuxtLink>
 </template>
 
 <style scoped>
-.item {
+.site-nav-item {
   display: flex;
   padding: 2px 10px 4px 7px;
   color: #fff;
@@ -24,25 +24,25 @@ defineProps<{
   align-items: center;
   border-radius: 10px;
 }
-.item:hover,
-.item.router-link-active {
+.site-nav-item:hover,
+.site-nav-item.router-link-active {
   color: #000;
   background: #fff;
 
-  .icon {
+  .site-nav-item-icon {
     filter: invert(1);
   }
 }
-.item.router-link-active {
+.site-nav-item.router-link-active {
   pointer-events: none;
 }
-.icon {
+.site-nav-item-icon {
   height: 30px;
   width: auto;
   margin-top: 2px;
   margin-right: 3px;
 }
-.name {
+.site-nav-item-name {
   font-weight: bold;
   font-size: 20px;
 }

@@ -33,6 +33,10 @@ function hideList() {
   doShowList.value = false;
   document.body.style.overflow = '';
 }
+
+onMounted(() => {
+  document.body.style.overflow = '';
+});
 </script>
 
 <template>
