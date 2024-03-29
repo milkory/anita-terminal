@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import AnitaPanel from '~/components/common/AnitaPanel.vue';
-
 const route = useRoute();
 
 const id = parseInt(route.params.id.toString());
@@ -54,14 +52,14 @@ onMounted(() => {
         </BButtonGroup>
         <CharView width="652px" :views="data['views']" />
       </div>
-      <AnitaPanel class="char-info col-md-6">
+      <AnitaPanel class="rs-char col-md-6">
         <CharBasicInfo :data="data" />
         <BTabs class="mt-2" pills nav-class="mb-2">
           <BTab title="信息"><CharInfo :data="data" /></BTab>
           <BTab title="技能">TODO</BTab>
           <BTab title="共振">TODO</BTab>
           <BTab title="觉醒">TODO</BTab>
-          <BTab title="档案">TODO</BTab>
+          <BTab title="档案"><CharFile :data="data" /></BTab>
           <BTab title="录音">TODO</BTab>
         </BTabs>
       </AnitaPanel>
@@ -78,7 +76,7 @@ onMounted(() => {
 </template>
 
 <style>
-.char-info {
+.rs-char {
   position: relative;
   z-index: 100;
   backdrop-filter: blur(1rem);
@@ -101,7 +99,7 @@ onMounted(() => {
 }
 
 @media (max-width: 768px) {
-  .char-info {
+  .rs-char {
     margin-top: 15px;
   }
 }

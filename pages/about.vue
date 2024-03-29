@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import AnitaPanel from '~/components/common/AnitaPanel.vue';
-
 useHead({
   title: '阿妮塔终端'
 });

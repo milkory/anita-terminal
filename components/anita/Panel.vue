@@ -1,7 +1,7 @@
 <template>
   <div class="panel px-4 py-3">
     <div class="content h-100">
-      <slot />
+      <slot></slot>
     </div>
   </div>
 </template>

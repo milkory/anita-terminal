@@ -1,3 +1,5 @@
+import type { Food } from './item';
+
 export interface Unit {
   id: number;
   name: string;
@@ -10,6 +12,9 @@ export interface Unit {
   attr: UnitAttribute;
   growth: UnitAttribute;
 
+  homeSkills: UnitHomeSkill[];
+  foods: Food[];
+
   birthday: string;
   gender: string;
   height: string;
@@ -17,8 +22,6 @@ export interface Unit {
   identity: string;
   ability: string;
   resume: UnitResume[];
-
-  homeSkill: UnitHomeSkill[];
 }
 
 export interface UnitView {

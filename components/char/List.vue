@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import AnitaPanel from '../common/AnitaPanel.vue';
-
 const props = defineProps<{
   data: UnitSummary[];
 }>();
