@@ -2,5 +2,8 @@
 export default defineNuxtConfig({
   devtools: { enabled: true },
   modules: ['@bootstrap-vue-next/nuxt', '@nuxtjs/eslint-module', '@nuxt/image', 'nuxt-icon'],
-  css: ['~/assets/scss/main.scss']
+  css: ['~/assets/scss/main.scss'],
+  image: {
+    quality: 80
+  }
 });
