@@ -9,13 +9,17 @@ export default defineEventHandler(async (event) => {
     const path = `/data/char/${id}.json`;
     if (await storage.hasItem(path)) {
       return await useStorage('assets:server').getItem(path);
+    } else {
+      throw createError({
+        statusCode: 404,
+        statusMessage: 'required assets not found'
+      });
     }
   } else if (type == 'summary') {
     return await useStorage('assets:server').getItem('/data/char/summary.json');
   }
-
   throw createError({
-    statusCode: 404,
-    statusMessage: 'unknown action'
+    statusCode: 400,
+    statusMessage: 'invalid request'
   });
 });
