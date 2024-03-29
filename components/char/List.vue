@@ -39,14 +39,14 @@ function filteredData(): UnitSummary[] {
             v-for="char in filteredData()"
             :key="char.id"
             :to="`/char/${char.id - 10000000}`"
-            :class="['char-list-item', 'position-relative', `quality-${char.quality}`]"
+            :class="['char-list-item', 'position-relative', `bg-quality-${char.quality}`]"
             @click="$emit('exit')"
           >
             <div class="char-list-item-cover"></div>
             <NuxtPicture
               :src="`/img/char/${char.views[0]}/face.png`"
               :img-attrs="{ class: 'char-list-item-img' }"
-            ></NuxtPicture>
+            />
             <div class="char-list-item-name text-light text-center">{{ char.name }}</div>
             <div class="char-list-item-tip">
               <div class="char-list-item-card d-flex">
@@ -83,26 +83,6 @@ function filteredData(): UnitSummary[] {
   flex: 1 0 10%;
   border-radius: 0.4em;
   overflow: hidden;
-
-  &.quality-n {
-    background: var(--quality-color-n);
-  }
-
-  &.quality-r {
-    background: var(--quality-color-r);
-  }
-
-  &.quality-sr {
-    background: var(--quality-color-sr);
-  }
-
-  &.quality-ssr {
-    background: var(--quality-color-ssr);
-  }
-
-  &.quality-ur {
-    background: var(--quality-color-ur);
-  }
 }
 
 .char-list-item-cover {

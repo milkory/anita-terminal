@@ -107,18 +107,20 @@ const trustLv = ref(1);
         <div class="char-food-img p-2">
           <NuxtPicture
             :src="`img/food/${food.id}.png`"
-            width="100px"
+            width="72px"
             :img-attrs="{ class: 'img-fluid', alt: food.name }"
           />
         </div>
         <div class="char-food-info ms-3 d-flex flex-column">
           <div class="char-food-name fw-bold">
             {{ food.name }}
+            <IFatigue class="fs-small ms-3 align-middle h-100">-{{ food.energy }}</IFatigue>
           </div>
           <div class="char-food-des flex-grow-1 text-secondary fs-small">{{ food.letter }}</div>
-          <div class="char-food-tip fs-small">
-            <IFatigue>-{{ food.energy }}</IFatigue>
-            <IExpiration class="ms-2"> {{ food.expirationDate }} 天 </IExpiration>
+          <div class="char-food-expire">
+            <IExpiration> {{ food.expirationDate }} 天 </IExpiration>
+            <Icon name="material-symbols:arrow-right-alt-rounded" class="mx-1 fs-5" />
+            <LinkMaterial :data="food.rewards[0]" />
           </div>
         </div>
       </div>

@@ -77,3 +77,23 @@ body {
   vertical-align: middle;
   margin-right: 0.1em;
 }
+
+.bg-quality-n {
+  background: var(--quality-color-n);
+}
+
+.bg-quality-r {
+  background: var(--quality-color-r);
+}
+
+.bg-quality-sr {
+  background: var(--quality-color-sr);
+}
+
+.bg-quality-ssr {
+  background: var(--quality-color-ssr);
+}
+
+.bg-quality-ur {
+  background: var(--quality-color-ur);
+}
