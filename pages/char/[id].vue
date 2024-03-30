@@ -56,7 +56,7 @@ onMounted(() => {
         <CharBasicInfo :data="data" />
         <BTabs class="mt-2" pills nav-class="mb-2">
           <BTab title="信息"><CharInfo :data="data" /></BTab>
-          <BTab title="技能">TODO</BTab>
+          <BTab title="技能"><CharSkill :data="data" /></BTab>
           <BTab title="共振">TODO</BTab>
           <BTab title="觉醒">TODO</BTab>
           <BTab title="档案"><CharFile :data="data" /></BTab>

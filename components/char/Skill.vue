@@ -5,5 +5,9 @@ defineProps<{
 </script>
 
 <template>
-  <div></div>
+  <div class="char-skill-list">
+    <div v-for="skill in data.skills" :key="skill.id">
+      <CharCard :data="skill" />
+    </div>
+  </div>
 </template>
