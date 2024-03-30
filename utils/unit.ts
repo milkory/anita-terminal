@@ -1,5 +1,3 @@
-import type { Food } from './item';
-
 export interface Unit {
   id: number;
   name: string;
@@ -14,6 +12,7 @@ export interface Unit {
 
   homeSkills: UnitHomeSkill[];
   foods: Food[];
+  skills: Skill[];
 
   birthday: string;
   gender: string;
@@ -134,4 +133,28 @@ export interface UnitSummary {
   line: number;
   skill: string[];
   views: number[];
+}
+
+export interface Skill {
+  id: number;
+  name: string;
+  num: number;
+  desc: string;
+  detailDesc: string;
+  card: Card;
+  leaderCardConditionList?: string;
+  exSkills?: Skill[];
+}
+
+export interface Card {
+  id: number;
+  name: string;
+  color: string;
+  tags: CardTag[];
+}
+
+export interface CardTag {
+  id: number;
+  name: string;
+  detail: string;
 }

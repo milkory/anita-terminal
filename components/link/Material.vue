@@ -9,7 +9,7 @@ const width = props.width || '36px';
 
 <template>
   <div
-    v-b-popover.hover="escape(data.des)"
+    v-b-popover.hover="data.des"
     class="link-material d-inline align-center py-1"
     :style="{ lineHeight: width }"
   >
