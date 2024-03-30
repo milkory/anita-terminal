@@ -151,6 +151,7 @@ export interface Card {
   name: string;
   color: string;
   tags: CardTag[];
+  cId: number;
 }
 
 export interface CardTag {

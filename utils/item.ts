@@ -4,6 +4,7 @@ export interface SourceMaterial {
   quality: string;
   des: string;
   saleType: SaleType;
+  cId: number;
 }
 
 export enum SaleType {
@@ -19,4 +20,5 @@ export interface Food {
   rewards: SourceMaterial[];
   expirationDate: number;
   letter: string;
+  cId: number;
 }

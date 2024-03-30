@@ -14,7 +14,7 @@ const width = props.width || '36px';
     :style="{ lineHeight: width }"
   >
     <div :class="['link-material-img', `bg-quality-${data.quality}`]" :style="{ width: width }">
-      <NuxtPicture :src="`/img/mat/${data.id}.png`" :width="width" />
+      <NuxtPicture :src="`/img/mat/${data.cId}.png`" :width="width" />
     </div>
     <span class="link-material-name ms-2 align-center">
       {{ data.name }}

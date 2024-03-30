@@ -107,7 +107,7 @@ const trustLv = ref(1);
       <div v-for="food in data.foods" :key="food.name" class="d-flex">
         <div class="char-food-img p-2">
           <NuxtPicture
-            :src="`img/food/${food.id}.png`"
+            :src="`img/food/${food.cId}.png`"
             width="72px"
             :img-attrs="{ class: 'img-fluid', alt: food.name }"
           />
