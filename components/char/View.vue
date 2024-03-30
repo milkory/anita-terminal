@@ -15,17 +15,19 @@ function changeTo(view: UnitView) {
 
 <template>
   <div class="char-view-root" :style="{ width: width }">
-    <div v-if="!showState2" class="char-view h-100">
-      <NuxtPicture
-        :src="`/img/char/${current.id}/full.png`"
-        :img-attrs="{ class: 'char-view-image mt-1', alt: current.name }"
-      />
-    </div>
-    <div v-else>
-      <NuxtPicture
-        :src="`/img/char/${current.id}/state2_full.png`"
-        :img-attrs="{ class: 'char-view-image-2', alt: current.name }"
-      />
+    <div v-for="view in views" v-show="current == view" :key="view.id">
+      <div v-if="!showState2" class="char-view h-100">
+        <NuxtPicture
+          :src="`/img/char/${view.id}/full.png`"
+          :img-attrs="{ class: 'char-view-image mt-1', alt: view.name }"
+        />
+      </div>
+      <div v-else>
+        <NuxtPicture
+          :src="`/img/char/${view.id}/state2_full.png`"
+          :img-attrs="{ class: 'char-view-image-2', alt: view.name }"
+        />
+      </div>
     </div>
     <BButtonGroup class="char-view-control">
       <BDropdown v-if="views.length > 1" dropup>

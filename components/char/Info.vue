@@ -13,7 +13,7 @@ const trustLv = ref(1);
       <div class="d-flex flex-wrap">
         <div
           v-for="(attr, key) in attrMap"
-          :key="attr.name"
+          :key="key"
           :class="[
             'char-attr',
             'd-flex',
@@ -76,8 +76,8 @@ const trustLv = ref(1);
     </BCard>
     <BCard variant="dark" class="mt-2" body-class="d-flex flex-wrap">
       <div
-        v-for="(skill, i) in filterHomeSkill(data.homeSkills)"
-        :key="i"
+        v-for="skill in filterHomeSkill(data.homeSkills)"
+        :key="skill.id"
         class="char-lifesk d-flex col-md-6 col-12"
       >
         <div class="char-lifesk-tag position-relative">
@@ -90,8 +90,8 @@ const trustLv = ref(1);
         </div>
         <div class="char-lifesk-detail ms-2">
           <div
-            v-for="(item, j) in filterHomeSkill(data.homeSkills, skill)"
-            :key="j"
+            v-for="item in filterHomeSkill(data.homeSkills, skill)"
+            :key="item.id"
             class="char-lifesk-item"
           >
             <div class="char-lifesk-name fw-bold">
