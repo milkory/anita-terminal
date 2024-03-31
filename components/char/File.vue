@@ -19,7 +19,7 @@ defineProps<{
     </BCard>
     <BCard
       v-for="(story, i) in data.files[0].stories"
-      :key="i"
+      :key="story.title"
       variant="dark"
       class="char-story main-text mt-2 py-0"
     >

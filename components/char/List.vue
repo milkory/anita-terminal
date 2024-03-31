@@ -6,13 +6,22 @@ const props = defineProps<{
 defineEmits(['exit']);
 
 const searchInput = ref('');
+const searchLine = ref(new Array(3));
+const searchSide = ref(new Array(6));
+
+function isSelected(array: Ref<any[]>, n: number) {
+  return array.value.every((it) => !it) || array.value[n];
+}
 
 function filteredData(): UnitSummary[] {
-  return searchInput.value == '~forceAll'
-    ? props.data
-    : props.data.filter((it) => {
-        return it.name.includes(searchInput.value) && it.online;
-      });
+  const forceAll = searchInput.value == '~forceAll';
+  return props.data.filter((it) => {
+    return (
+      (forceAll || (it.name.includes(searchInput.value) && it.online)) &&
+      isSelected(searchLine, it.line - 1) &&
+      isSelected(searchSide, it.side - 1)
+    );
+  });
 }
 </script>
 
@@ -21,7 +30,7 @@ function filteredData(): UnitSummary[] {
     <div class="char-list row h-100 pb-5">
       <div class="col-md-3">
         <div class="d-flex">
-          <BButton v-b-toggle.char-list-filter class="only-m me-2">
+          <BButton v-b-toggle.char-filter class="only-m me-2">
             <Icon name="material-symbols:filter-alt" class="fs-5" />
           </BButton>
           <BFormInput v-model="searchInput" placeholder="搜索.." />
@@ -31,8 +40,26 @@ function filteredData(): UnitSummary[] {
             </BButton>
           </div>
         </div>
-        <BCollapse id="char-list-filter">
-          <div class="mt-2">123</div>
+        <BCollapse id="char-filter">
+          <CharListFilter
+            v-model="searchLine"
+            class="mt-2"
+            name="站位"
+            :options="['前排', '中排', '后排']"
+          />
+          <CharListFilter
+            v-model="searchSide"
+            class="mt-2"
+            name="阵营"
+            :options="[
+              '黑月锁链',
+              '科伦巴商会',
+              '曼杜斯帝国',
+              '环大陆铁道联盟',
+              '索思学会',
+              '“园丁”'
+            ]"
+          />
         </BCollapse>
       </div>
       <div class="col-md-9 overflow-y-auto h-100 mt-2">
@@ -172,7 +199,7 @@ function filteredData(): UnitSummary[] {
 }
 
 @media (min-width: 768px) {
-  #char-list-filter {
+  #char-filter {
     display: block;
   }
 }

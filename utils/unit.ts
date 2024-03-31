@@ -136,6 +136,7 @@ export interface UnitSummary {
   line: number;
   skill: string[];
   views: number[];
+  side: number;
   online: boolean;
 }
 
