@@ -6,7 +6,7 @@ const props = defineProps<{
 
 const width = props.width || 36;
 const image = useImage();
-const matImg = image(`/img/mat/${props.data.cId}.png`, { width: width });
+const matImg = image(`/img/mat/${props.data.cId}.png`, { width: width + 16 });
 </script>
 
 <template>
@@ -33,7 +33,6 @@ const matImg = image(`/img/mat/${props.data.cId}.png`, { width: width });
 .link-material-img {
   display: inline-block;
   border-radius: 50%;
-  overflow: clip;
   aspect-ratio: 1;
   background-size: contain;
   background-repeat: no-repeat;

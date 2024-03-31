@@ -158,4 +158,5 @@ export interface CardTag {
   id: number;
   name: string;
   detail: string;
+  cId: number;
 }

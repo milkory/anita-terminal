@@ -30,7 +30,7 @@
 
   --bs-dark: #00000080;
   --bs-dark-rgb: 0, 0, 0;
-  --bs-bg-opacity: 0.4;
+  --bs-secondary-rgb: 150, 150, 150;
 }
 
 @media (max-width: 768px) {
@@ -78,4 +78,8 @@
 
 .btn .icon {
   vertical-align: sub !important;
+}
+
+.text-bg-dark {
+  background-color: RGBA(var(--bs-dark-rgb), 0.4) !important;
 }
