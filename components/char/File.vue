@@ -15,7 +15,7 @@ defineProps<{
       <div>升构能力：{{ data.ability }}</div>
     </BCard>
     <BCard variant="dark" class="main-text mt-2">
-      <p v-for="(resume, i) in data.resume" :key="i">{{ resume.des }}</p>
+      <p v-for="(resume, i) in data.resume" :key="i" v-html="resume.des"></p>
     </BCard>
     <BCard
       v-for="(story, i) in data.files[0].stories"

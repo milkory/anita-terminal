@@ -8,9 +8,11 @@ defineEmits(['exit']);
 const searchInput = ref('');
 
 function filteredData(): UnitSummary[] {
-  return props.data.filter((it) => {
-    return it.name.includes(searchInput.value);
-  });
+  return searchInput.value == '~forceAll'
+    ? props.data
+    : props.data.filter((it) => {
+        return it.name.includes(searchInput.value) && it.online;
+      });
 }
 </script>
 
@@ -80,9 +82,10 @@ function filteredData(): UnitSummary[] {
 
 .char-list-item {
   max-width: var(--char-list-item-width);
+  aspect-ratio: 1;
   flex: 1 0 10%;
   border-radius: 0.4em;
-  overflow: hidden;
+  overflow: clip;
 }
 
 .char-list-item-cover {
@@ -90,7 +93,6 @@ function filteredData(): UnitSummary[] {
   width: 100%;
   height: 100%;
   background: #000000a0;
-  border-radius: 0.4em;
   opacity: 0;
   transition: opacity 0.2s ease;
   z-index: 10;
@@ -123,7 +125,6 @@ function filteredData(): UnitSummary[] {
 
 .char-list-item-img {
   width: var(--char-list-item-width);
-  border-radius: 0.4em;
   transition: scale 0.2s ease;
 }
 
@@ -132,7 +133,6 @@ function filteredData(): UnitSummary[] {
   background: #000000c0;
   width: var(--char-list-item-width);
   bottom: 0;
-  border-radius: 0 0 0.4em 0.4em;
   z-index: 30;
 }
 

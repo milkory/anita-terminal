@@ -14,7 +14,7 @@ function changeTo(view: UnitView) {
 </script>
 
 <template>
-  <div class="char-view-root" :style="{ width: width }">
+  <div v-if="views.length > 0" class="char-view-root" :style="{ width: width }">
     <div v-for="view in views" v-show="current == view" :key="view.id">
       <div v-if="!showState2" class="char-view h-100">
         <img

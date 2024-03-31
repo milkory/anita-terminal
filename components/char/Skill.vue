@@ -1,12 +1,14 @@
 <script setup lang="ts">
-defineProps<{
+const props = defineProps<{
   data: Unit;
 }>();
+
+const tags = getAllTag(props.data.skills);
 </script>
 
 <template>
   <div class="char-skill-list">
-    <BCard variant="dark" class="char-skill-tag">
+    <BCard v-if="tags.length > 0" variant="dark" class="char-skill-tag">
       <div
         v-for="tag in getAllTag(data.skills)"
         :key="tag.id"
