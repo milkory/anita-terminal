@@ -21,7 +21,10 @@ defineProps<{
           <div class="char-talent-name fw-bold text-warning">
             {{ talent.name }}
             <div class="char-talent-attr d-inline-block float-end">
-              <BBadge variant="light" class="ms-1">
+              <BBadge
+                :variant="type == 'talent' ? (i == 4 ? 'warning' : 'danger') : 'light'"
+                class="ms-1"
+              >
                 {{ type == 'talent' ? '共振' : '觉醒' }} {{ i + 1 }}
               </BBadge>
             </div>
