@@ -13,6 +13,8 @@ export interface Unit {
   homeSkills: UnitHomeSkill[];
   foods: Food[];
   skills: Skill[];
+  talents: Talent[];
+  breakthroughs: Talent[];
 
   birthday: string;
   gender: string;
@@ -159,6 +161,13 @@ export interface CardTag {
   id: number;
   name: string;
   detail: string;
+  cId: number;
+}
+
+export interface Talent {
+  id: number;
+  name: string;
+  desc: string;
   cId: number;
 }
 
