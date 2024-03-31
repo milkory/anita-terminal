@@ -147,7 +147,7 @@ export interface Skill {
   desc: string;
   detailDesc: string;
   card: Card;
-  leaderCardConditionList?: string;
+  leaderCond?: string;
   exSkills?: Skill[];
 }
 

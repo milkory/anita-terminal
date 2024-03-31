@@ -20,6 +20,10 @@ defineProps<{
             <BBadge variant="light" class="ms-1">COST {{ data.card.cost }}</BBadge>
           </div>
         </div>
+        <div v-if="data.leaderCond" class="fs-small text-danger">
+          队长技条件：
+          <span v-html="data.leaderCond"></span>
+        </div>
         <div class="char-card-desc fs-small" v-html="data.desc"></div>
         <div class="char-card-desc-ex fs-small text-secondary" v-html="data.detailDesc"></div>
       </div>
