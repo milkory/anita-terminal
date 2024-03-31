@@ -1,7 +1,7 @@
 export interface SourceMaterial {
   id: number;
   name: string;
-  quality: string;
+  quality: 'n' | 'r' | 'sr' | 'ssr' | 'ur';
   des: string;
   saleType: SaleType;
   cId: number;

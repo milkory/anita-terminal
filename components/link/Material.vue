@@ -14,7 +14,13 @@ const width = props.width || '36px';
     :style="{ lineHeight: width }"
   >
     <div :class="['link-material-img', `bg-quality-${data.quality}`]" :style="{ width: width }">
-      <NuxtPicture :src="`/img/mat/${data.cId}.png`" />
+      <NuxtPicture
+        fit="contain"
+        :src="`/img/mat/${data.cId}.png`"
+        width="36px"
+        height="36px"
+        :modifiers="{ b: qualityColorMap[data.quality] }"
+      />
     </div>
     <span class="link-material-name ms-2 align-center">
       {{ data.name }}
@@ -28,16 +34,9 @@ const width = props.width || '36px';
 }
 
 .link-material-img {
-  height: 100%;
-  display: inline-flex;
-  align-items: center;
-  justify-content: space-around;
+  display: inline-block;
   border-radius: 50%;
-  overflow: hidden;
+  overflow: clip;
   aspect-ratio: 1;
-
-  img {
-    height: 100%;
-  }
 }
 </style>
