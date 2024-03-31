@@ -17,15 +17,17 @@ function changeTo(view: UnitView) {
   <div class="char-view-root" :style="{ width: width }">
     <div v-for="view in views" v-show="current == view" :key="view.id">
       <div v-if="!showState2" class="char-view h-100">
-        <NuxtPicture
-          :src="`/img/char/${view.id}/full.png`"
-          :img-attrs="{ class: 'char-view-image mt-1', alt: view.name }"
+        <img
+          :src="`/img/char/${view.id}/full.webp`"
+          class="char-view-image mt-1"
+          :alt="view.name"
         />
       </div>
       <div v-else>
-        <NuxtPicture
-          :src="`/img/char/${view.id}/state2_full.png`"
-          :img-attrs="{ class: 'char-view-image-2', alt: view.name }"
+        <img
+          :src="`/img/char/${view.id}/state2_full.webp`"
+          class="char-view-image-2"
+          :alt="view.name"
         />
       </div>
     </div>

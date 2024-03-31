@@ -43,9 +43,10 @@ function filteredData(): UnitSummary[] {
             @click="$emit('exit')"
           >
             <div class="char-list-item-cover"></div>
-            <NuxtPicture
-              :src="`/img/char/${char.views[0]}/face.png`"
-              :img-attrs="{ class: 'char-list-item-img' }"
+            <img
+              :src="`/img/char/${char.views[0]}/face.webp`"
+              :alt="char.name"
+              class="char-list-item-img"
             />
             <div class="char-list-item-name text-light text-center">{{ char.name }}</div>
             <div class="char-list-item-tip">

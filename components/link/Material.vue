@@ -5,8 +5,6 @@ const props = defineProps<{
 }>();
 
 const width = props.width || 36;
-const image = useImage();
-const matImg = image(`/img/mat/${props.data.cId}.png`, { width: width + 16 });
 </script>
 
 <template>
@@ -17,7 +15,7 @@ const matImg = image(`/img/mat/${props.data.cId}.png`, { width: width + 16 });
   >
     <div
       :class="['link-material-img', `bg-quality-${data.quality}`, ' align-middle']"
-      :style="{ width: `${width}px`, backgroundImage: `url(${matImg})` }"
+      :style="{ width: `${width}px`, backgroundImage: `url(/img/mat/${data.cId}.webp)` }"
     ></div>
     <span class="link-material-name ms-2 align-middle">
       {{ data.name }}

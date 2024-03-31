@@ -106,11 +106,7 @@ const trustLv = ref(1);
     <BCard variant="dark" class="mt-2">
       <div v-for="food in data.foods" :key="food.name" class="d-flex">
         <div class="char-food-img p-2">
-          <NuxtPicture
-            :src="`img/food/${food.cId}.png`"
-            width="72px"
-            :img-attrs="{ class: 'img-fluid', alt: food.name }"
-          />
+          <img :src="`/img/food/${food.cId}.webp`" alt="food.name" width="72" class="img-fluid" />
         </div>
         <div class="char-food-info ms-3 d-flex flex-column">
           <div class="char-food-name fw-bold">

@@ -12,7 +12,9 @@ defineProps<{
         :key="tag.id"
         class="d-flex fs-small align-items-center"
       >
-        <NuxtPicture class="char-card-tag-img" :src="`/img/tag/${tag.cId}.png`" width="48" />
+        <div class="char-card-tag-img">
+          <img :src="`/img/tag/${tag.cId}.webp`" :alt="tag.name" width="48" />
+        </div>
         <div class="ms-2 char-card-tag-detail">
           <span v-html="tag.name"></span>
           <span class="text-warning">：</span>
