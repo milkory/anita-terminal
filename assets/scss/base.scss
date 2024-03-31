@@ -83,3 +83,7 @@
 .text-bg-dark {
   background-color: RGBA(var(--bs-dark-rgb), 0.4) !important;
 }
+
+.card.text-bg-dark .card-header {
+  background: var(--bs-gray-700);
+}

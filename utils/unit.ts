@@ -13,8 +13,8 @@ export interface Unit {
   homeSkills: UnitHomeSkill[];
   foods: Food[];
   skills: Skill[];
-  talents: Talent[];
-  breakthroughs: Talent[];
+  talents: UnitTalent[];
+  breakthroughs: UnitTalent[];
 
   birthday: string;
   gender: string;
@@ -23,6 +23,7 @@ export interface Unit {
   identity: string;
   ability: string;
   resume: UnitResume[];
+  files: UnitFile[];
 }
 
 export interface UnitView {
@@ -164,11 +165,24 @@ export interface CardTag {
   cId: number;
 }
 
-export interface Talent {
+export interface UnitTalent {
   id: number;
   name: string;
   desc: string;
   cId: number;
+}
+
+export interface UnitFile {
+  id: number;
+  cv1: string;
+  cv2: string;
+  stories: UnitStory[];
+}
+
+export interface UnitStory {
+  title: string;
+  unlockLevel: number;
+  desc: string;
 }
 
 export function getAllTag(skills: Skill[]): CardTag[] {
