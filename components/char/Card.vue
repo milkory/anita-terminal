@@ -31,6 +31,10 @@ defineProps<{
 </template>
 
 <style>
+.char-card-attr {
+  margin-top: -0.1em;
+}
+
 .char-card-img {
   padding: 1px;
 }
