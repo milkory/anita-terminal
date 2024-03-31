@@ -15,9 +15,16 @@ defineProps<{
         <div class="char-card-name fw-bold text-warning">
           {{ data.name }}
           <div class="char-card-attr d-inline-block float-end">
-            <BBadge v-if="extra" variant="warning" class="ms-1">衍生卡</BBadge>
+            <BBadge v-if="extra" variant="warning" class="ms-1">
+              <span class="only-pc">衍生卡</span>
+              <span class="only-m">衍</span>
+            </BBadge>
             <BBadge v-if="data.num" variant="light" class="ms-1">{{ data.num }}张</BBadge>
-            <BBadge variant="light" class="ms-1">COST {{ data.card.cost }}</BBadge>
+            <BBadge variant="light" class="ms-1">
+              <span class="only-pc">COST</span>
+              <span class="only-m">CC</span>
+              {{ data.card.cost }}
+            </BBadge>
           </div>
         </div>
         <div v-if="data.leaderCond" class="fs-small text-danger">
