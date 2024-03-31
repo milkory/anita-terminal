@@ -28,7 +28,7 @@ function filteredData(): UnitSummary[] {
 <template>
   <AnitaPanel class="char-list-panel h-100">
     <div class="char-list row h-100 pb-5">
-      <div class="col-md-3">
+      <div class="col-md-3 mb-2">
         <div class="d-flex">
           <BButton v-b-toggle.char-filter class="only-m me-2">
             <Icon name="material-symbols:filter-alt" class="fs-5" />

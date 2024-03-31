@@ -60,7 +60,6 @@ onMounted(() => {
           <BTab title="共振"><CharTalent :data="data.talents" type="talent" /></BTab>
           <BTab title="觉醒"><CharTalent :data="data.breakthroughs" type="breakthrough" /></BTab>
           <BTab title="档案"><CharFile :data="data" /></BTab>
-          <BTab title="录音">TODO</BTab>
         </BTabs>
       </AnitaPanel>
     </div>

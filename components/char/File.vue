@@ -39,20 +39,23 @@ defineProps<{
   </div>
 </template>
 
-<style>
+<style lang="scss">
 .char-story-title {
   cursor: pointer;
+  padding: var(--bs-card-cap-padding-y) var(--bs-card-cap-padding-x);
 }
 
 .char-story-content {
   padding: 1rem;
 }
 
-.char-story .card-header {
-  border-radius: 0;
-}
-
-.char-story .card-body {
-  padding: 0;
+.char-story {
+  .card-header {
+    border-radius: 0;
+    padding: 0;
+  }
+  .card-body {
+    padding: 0;
+  }
 }
 </style>
