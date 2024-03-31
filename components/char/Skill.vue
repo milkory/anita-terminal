@@ -10,7 +10,7 @@ defineProps<{
       <div
         v-for="tag in getAllTag(data.skills)"
         :key="tag.id"
-        class="d-flex fs-small align-items-center mt-1"
+        class="d-flex fs-small align-items-center"
       >
         <NuxtPicture class="char-card-tag-img" :src="`/img/tag/${tag.cId}.png`" width="48" />
         <div class="ms-2 char-card-tag-detail">
@@ -25,3 +25,14 @@ defineProps<{
     </div>
   </div>
 </template>
+
+<style>
+.char-card-tag-img {
+  height: 3em;
+  padding: 0.25em;
+  img {
+    max-height: 100%;
+    width: auto;
+  }
+}
+</style>

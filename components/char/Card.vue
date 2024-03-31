@@ -34,12 +34,4 @@ defineProps<{
 .char-card-img {
   padding: 1px;
 }
-
-.char-card-tag-img {
-  height: 2.5em;
-  img {
-    max-height: 100%;
-    width: auto;
-  }
-}
 </style>
