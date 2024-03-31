@@ -2,7 +2,7 @@
   <div class="rs-welcome h-full fixed-top w-100 d-flex align-items-center justify-content-around">
     <div>
       <img src="/img/welcome.webp" alt="欢迎" />
-      <div>123</div>
+      <div></div>
     </div>
   </div>
 </template>
