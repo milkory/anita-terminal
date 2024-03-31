@@ -1,6 +1,6 @@
 <script setup lang="ts">
 defineProps<{
-  data: Talent[];
+  data: UnitTalent[];
   type: 'talent' | 'breakthrough';
 }>();
 </script>

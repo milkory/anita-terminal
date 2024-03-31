@@ -21,7 +21,7 @@ defineProps<{
       v-for="(story, i) in data.files[0].stories"
       :key="i"
       variant="dark"
-      class="char-story mt-2 py-0"
+      class="char-story main-text mt-2 py-0"
     >
       <template #header>
         <div v-b-toggle="`char-story-${i}`" class="char-story-title fw-bold mb-0">
