@@ -150,6 +150,7 @@ export interface Card {
   id: number;
   name: string;
   color: string;
+  cost: number;
   tags: CardTag[];
   cId: number;
 }
@@ -159,4 +160,17 @@ export interface CardTag {
   name: string;
   detail: string;
   cId: number;
+}
+
+export function getAllTag(skills: Skill[]): CardTag[] {
+  const tags: CardTag[] = [];
+  for (const skill of skills) {
+    const curTag = skill.card.tags.concat((skill.exSkills || []).flatMap((it) => it.card.tags));
+    for (const tag of curTag) {
+      if (!tags.find((it) => it.id == tag.id)) {
+        tags.push(tag);
+      }
+    }
+  }
+  return tags;
 }

@@ -11,23 +11,17 @@ defineProps<{
       <div class="char-card-img h-100 border border-secondary">
         <NuxtPicture :src="`/img/card/${data.card.cId}.png`" width="72px" />
       </div>
-      <div class="char-card-info ms-2">
+      <div class="char-card-info ms-2 w-100">
         <div class="char-card-name fw-bold text-warning">
           {{ data.name }}
-          <BBadge v-if="extra" variant="warning" class="ms-1">衍生卡</BBadge>
+          <div class="char-card-attr d-inline-block float-end">
+            <BBadge v-if="extra" variant="warning" class="ms-1">衍生卡</BBadge>
+            <BBadge v-if="data.num" variant="light" class="ms-1">{{ data.num }}张</BBadge>
+            <BBadge variant="light" class="ms-1">COST {{ data.card.cost }}</BBadge>
+          </div>
         </div>
         <div class="char-card-desc fs-small" v-html="data.desc"></div>
         <div class="char-card-desc-ex fs-small text-secondary" v-html="data.detailDesc"></div>
-      </div>
-    </div>
-    <div class="char-card-tag">
-      <div v-for="tag in data.card.tags" :key="tag.id" class="d-flex fs-small align-items-center">
-        <NuxtPicture class="char-card-tag-img" :src="`/img/tag/${tag.cId}.png`" width="48" />
-        <div class="ms-2 char-card-tag-detail">
-          <span v-html="tag.name"></span>
-          <span class="text-warning">：</span>
-          <span v-html="tag.detail"></span>
-        </div>
       </div>
     </div>
   </BCard>
