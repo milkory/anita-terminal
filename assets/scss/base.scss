@@ -88,3 +88,8 @@
 .card.text-bg-dark .card-header {
   background: var(--bs-gray-700);
 }
+
+.plain-link {
+  color: inherit;
+  text-decoration: inherit;
+}

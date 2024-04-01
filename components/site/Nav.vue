@@ -25,7 +25,7 @@ onMounted(() => {
   </div>
   <div class="m-site-header only-m">
     <div class="m-site-main px-3">
-      <div class="m-site-nav-title">TERMINAL</div>
+      <NuxtLink to="/" class="m-site-nav-title plain-link">TERMINAL</NuxtLink>
       <BButton v-b-toggle.m-site-nav>
         <Icon name="material-symbols:menu-rounded" class="fs-5" />
       </BButton>
