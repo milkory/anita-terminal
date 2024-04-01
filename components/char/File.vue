@@ -6,13 +6,13 @@ defineProps<{
 
 <template>
   <div class="rs-char-file">
-    <BCard variant="dark" class="mt-2">
-      <div>生日：{{ data.birthday }}</div>
-      <div>性别：{{ data.gender }}</div>
-      <div>身高：{{ data.height }}</div>
-      <div>出身地：{{ data.birthplace }}</div>
-      <div>现身份：{{ data.identity }}</div>
-      <div>升构能力：{{ data.ability }}</div>
+    <BCard variant="dark" class="char-profile mt-2" body-class="d-flex flex-wrap">
+      <CharProfileItem name="生日" :value="data.birthday" />
+      <CharProfileItem name="性别" :value="data.gender" />
+      <CharProfileItem name="身高" :value="data.height" />
+      <CharProfileItem name="出身地" :value="data.birthplace" />
+      <CharProfileItem name="现身份" :value="data.identity" />
+      <CharProfileItem name="升构能力" :value="data.ability" />
     </BCard>
     <BCard variant="dark" class="main-text mt-2">
       <p v-for="(resume, i) in data.resume" :key="i" v-html="resume.des"></p>
