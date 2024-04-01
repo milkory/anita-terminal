@@ -78,7 +78,6 @@ onMounted(() => {
 .rs-char {
   position: relative;
   z-index: 100;
-  backdrop-filter: blur(1rem);
 }
 
 .char-list-cover {

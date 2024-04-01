@@ -126,11 +126,10 @@ onMounted(() => {
     height: 50px;
     width: 100vw;
     color: #eee;
-    background: #000000a0;
+    background: #1a1a1af0;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    backdrop-filter: blur(1rem);
   }
 
   .m-site-nav-title {

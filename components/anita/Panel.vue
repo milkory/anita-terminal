@@ -17,4 +17,11 @@
   color: var(--anita-color-text);
   overflow-wrap: break-word;
 }
+
+@media (max-width: 768px) {
+  .panel {
+    background: #1a1a1aee;
+    backdrop-filter: none;
+  }
+}
 </style>

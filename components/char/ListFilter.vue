@@ -27,3 +27,13 @@ model.value.fill(false);
     </div>
   </div>
 </template>
+
+<style>
+@media (max-width: 768px) {
+  .char-filter-option:not(.active):hover {
+    color: var(--bs-btn-color);
+    background-color: inherit;
+    border-color: inherit;
+  }
+}
+</style>
