@@ -2,6 +2,8 @@
 useHead({
   title: '阿妮塔终端'
 });
+
+onMounted(() => setLastView('about'));
 </script>
 
 <template>

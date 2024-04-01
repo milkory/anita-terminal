@@ -1,12 +1,10 @@
 <script setup lang="ts">
-definePageMeta({
-  middleware: [
-    function (to) {
-      if (to.path == '/char' || to.path == '/char/') {
-        return navigateTo('/char/4');
-      }
-    }
-  ]
+const route = useRoute();
+
+onMounted(() => {
+  if (route.name == 'char') {
+    navigateTo(`/char/${getLastView('char') ?? 4}`);
+  }
 });
 </script>
 

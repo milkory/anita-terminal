@@ -12,7 +12,7 @@ onMounted(() => {
 
 <template>
   <div class="site-nav only-pc">
-    <NuxtLink to="/" class="site-nav-logo">
+    <NuxtLink to="/home" class="site-nav-logo">
       <img src="/img/navlogo.png" alt="logo" />
       <div class="site-nav-title">TERMINAL</div>
     </NuxtLink>
@@ -25,7 +25,7 @@ onMounted(() => {
   </div>
   <div class="m-site-header only-m">
     <div class="m-site-main px-3">
-      <NuxtLink to="/" class="m-site-nav-title plain-link">TERMINAL</NuxtLink>
+      <NuxtLink to="/home" class="m-site-nav-title plain-link">TERMINAL</NuxtLink>
       <BButton v-b-toggle.m-site-nav>
         <Icon name="material-symbols:menu-rounded" class="fs-5" />
       </BButton>

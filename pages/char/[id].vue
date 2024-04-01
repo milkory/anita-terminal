@@ -34,6 +34,7 @@ function hideList() {
 
 onMounted(() => {
   document.body.style.overflow = '';
+  setLastView('char', id.toString());
 });
 </script>
 
