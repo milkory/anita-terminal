@@ -10,6 +10,7 @@
 <style>
 .rs-welcome {
   img {
+    filter: drop-shadow(#000 0 0 4px);
     min-width: 25%;
     max-width: 350px;
   }
