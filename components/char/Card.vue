@@ -9,7 +9,7 @@ defineProps<{
   <BCard variant="dark" class="char-card w-100 mt-2">
     <div class="char-card-detail d-flex">
       <div class="char-card-img h-100 border border-secondary">
-        <img :src="`/img/card/${data.card.cId}.webp`" :alt="data.card.name" width="72" />
+        <img :src="`/img/res/${data.card.cId}.webp`" :alt="data.card.name" width="72" />
       </div>
       <div class="char-card-info ms-2 w-100">
         <div class="char-card-name fw-bold text-warning">

@@ -15,7 +15,7 @@ defineProps<{
     >
       <div class="char-talent-detail d-flex">
         <div class="char-talent-img h-100 border border-secondary">
-          <img :src="`/img/${type}/${talent.cId}.webp`" :alt="talent.name" width="72px" />
+          <img :src="`/img/res/${talent.cId}.webp`" :alt="talent.name" width="72px" />
         </div>
         <div class="char-talent-info ms-2 w-100">
           <div class="char-talent-name fw-bold text-warning">

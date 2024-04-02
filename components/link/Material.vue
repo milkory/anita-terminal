@@ -15,7 +15,7 @@ const width = props.width || 36;
   >
     <div
       :class="['link-material-img', `bg-quality-${data.quality}`, ' align-middle']"
-      :style="{ width: `${width}px`, backgroundImage: `url(/img/mat/${data.cId}.webp)` }"
+      :style="{ width: `${width}px`, backgroundImage: `url(/img/res/${data.cId}.webp)` }"
     ></div>
     <span class="link-material-name ms-2 align-middle">
       {{ data.name }}
