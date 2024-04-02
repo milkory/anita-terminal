@@ -1,9 +1,13 @@
 <script setup lang="ts">
 onMounted(() => {
-  navigateTo(getLastView('.'));
+  navigateTo(getLastView('.') ?? '/home');
 });
 </script>
 
 <template>
-  <div>Redirecting...</div>
+  <div class="rs-index h-full fixed-top d-flex align-items-center justify-content-around">
+    <div>
+      <AnitaLoading />
+    </div>
+  </div>
 </template>
