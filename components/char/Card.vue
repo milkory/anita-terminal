@@ -19,7 +19,11 @@ defineProps<{
               <span class="only-pc">衍生卡</span>
               <span class="only-m">衍</span>
             </BBadge>
-            <BBadge v-if="data.num" variant="light" class="ms-1">{{ data.num }}张</BBadge>
+            <BBadge v-else-if="data.leaderCond" variant="danger" class="ms-1">
+              <span class="only-pc">得意技</span>
+              <span class="only-m">得意</span>
+            </BBadge>
+            <BBadge v-else-if="data.num" variant="light" class="ms-1">{{ data.num }}张</BBadge>
             <BBadge variant="light" class="ms-1">
               <span class="only-pc">COST</span>
               <span class="only-m">CC</span>

@@ -7,7 +7,6 @@
 <style scoped>
 .anita-loading {
   animation: rotate 2.2s infinite ease-in-out;
-  filter: drop-shadow(#000 0 0 2px);
 
   img {
     width: 200px;
@@ -17,15 +16,15 @@
 
 @keyframes rotate {
   0% {
-    filter: drop-shadow(#000 0 0 8px);
+    filter: drop-shadow(#000 0 0 3px);
     transform: rotateY(0);
   }
   50% {
-    filter: drop-shadow(#000 0 0 0);
+    filter: drop-shadow(#000 0 0 1px);
     transform: rotateY(90deg);
   }
   100% {
-    filter: drop-shadow(#000 0 0 8px);
+    filter: drop-shadow(#000 0 0 3px);
     transform: rotateY(0);
   }
 }

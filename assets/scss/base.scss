@@ -31,7 +31,6 @@
   --bs-dark: #00000080;
   --bs-dark-rgb: 0, 0, 0;
   --bs-secondary-rgb: 150, 150, 150;
-  --bs-danger-rgb: 204, 109, 107;
 }
 
 @media (max-width: 768px) {
@@ -82,7 +81,7 @@
 }
 
 .text-bg-dark {
-  background-color: RGBA(var(--bs-dark-rgb), 0.4) !important;
+  background-color: rgba(var(--bs-dark-rgb), 0.4) !important;
 }
 
 .card.text-bg-dark .card-header {
@@ -92,4 +91,8 @@
 .plain-link {
   color: inherit;
   text-decoration: inherit;
+}
+
+.text-danger {
+  color: rgba(204, 109, 107, var(--bs-text-opacity)) !important;
 }
