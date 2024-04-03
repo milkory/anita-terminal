@@ -1,0 +1,1 @@
+{"id":11800048,"type":"equip","name":"清醒梦纤维","quality":"ur","desc":"穿着这种材料的人能在保持理智的情况下得到类似深眠者的形态场，能在释放需要大量能量的技能时更有效率地利用能量。<br>【此装备唯一】","subType":2,"side":4,"attr":{"hp":0,"def":49,"atk":0},"growth":{"hp":0,"atk":0,"def":4.91},"skills":[{"id":12301186,"name":"","desc":"将自身红卡造成伤害的2%回复自身生命值","detailDesc":""}],"randomSkills":[80301412],"excludeSkills":[],"obtain":[],"cId":11800048}

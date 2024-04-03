@@ -1,0 +1,1 @@
+{"id":11800037,"type":"equip","name":"引魔法杖","quality":"r","desc":"帝国魔法师学徒使用的法杖。","subType":1,"side":3,"attr":{"hp":0,"def":0,"atk":24},"growth":{"hp":0,"atk":2.36,"def":0},"skills":[{"id":12301052,"name":"","desc":"打出紫卡后，有20%概率获得1点费用，概率可叠加","detailDesc":""}],"randomSkills":[80301403],"excludeSkills":[],"obtain":["黑月商店","行车沿线桦树浮标-昏恶巨象"],"cId":11800037}

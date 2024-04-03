@@ -64,6 +64,11 @@
   .only-pc {
     display: none !important;
   }
+
+  .mx-out-1 {
+    margin-left: -0.5rem;
+    margin-right: -0.5rem;
+  }
 }
 
 @media (min-width: 768px) {

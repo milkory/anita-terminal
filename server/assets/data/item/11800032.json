@@ -1,0 +1,1 @@
+{"id":11800032,"type":"equip","name":"世界团结","quality":"ur","desc":"学会的科技，帝国的魔法，地联的撮合。三大势力伺候这一把武器。使用者会获得三大势力的战斗经验，越战越勇。<br>【此装备唯一】","subType":1,"side":4,"attr":{"hp":0,"def":0,"atk":47},"growth":{"hp":0,"atk":4.7,"def":0},"skills":[{"id":12301185,"name":"","desc":"每次有敌人被击杀时，回复自身10%生命值","detailDesc":""}],"randomSkills":[80300133],"excludeSkills":[],"obtain":[],"cId":11800032}

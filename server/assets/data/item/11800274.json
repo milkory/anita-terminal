@@ -1,0 +1,1 @@
+{"id":11800274,"type":"equip","name":"花园守护","quality":"ssr","desc":"将许愿塔带来的生机储存在盔甲中。","subType":2,"side":3,"attr":{"hp":0,"def":37,"atk":0},"growth":{"hp":0,"atk":0,"def":3.72},"skills":[{"id":12301062,"name":"","desc":"每秒回复自身0.5%生命值","detailDesc":""}],"randomSkills":[80301407],"excludeSkills":[12300864],"obtain":["黑月商店","行车沿线桦树浮标-昏恶巨象"],"cId":11800274}

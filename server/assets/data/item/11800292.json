@@ -1,0 +1,1 @@
+{"id":11800292,"type":"equip","name":"奔雷破影剑","quality":"ur","desc":"一把带有传送技术的短剑，能让人的行动宛如一道迅捷的闪电。在这种高速状态中，相对论效应造成的时间减速会让使用者的反应速度得到极大提高。<br>【此装备唯一】","subType":1,"side":1,"attr":{"hp":0,"def":0,"atk":47},"growth":{"hp":0,"atk":4.72,"def":0},"skills":[{"id":12301049,"name":"","desc":"开局额外抽1张牌","detailDesc":""}],"randomSkills":[80301401],"excludeSkills":[],"obtain":[],"cId":11800292}
