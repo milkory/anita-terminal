@@ -48,7 +48,7 @@ function filteredData(type: ItemType): ItemSummary[] {
           v-for="item in filteredData('equip')"
           :key="item.id"
           :to="`/item/${item.id}`"
-          :class="['item-list-item', 'position-relative', `bg-quality-${item.quality}`]"
+          :class="['item-list-item position-relative', `bg-quality-${item.quality}`]"
         >
           <div class="item-list-item-cover"></div>
           <img :src="`/img/res/${item.cId}.webp`" :alt="item.name" class="item-list-item-img" />
@@ -65,6 +65,7 @@ function filteredData(type: ItemType): ItemSummary[] {
 <style>
 .item-list-grid {
   gap: 0.5rem;
+  padding-left: 2px;
   grid-template-columns: repeat(auto-fill, minmax(var(--item-list-item-width), 1fr));
 }
 
@@ -80,6 +81,8 @@ function filteredData(type: ItemType): ItemSummary[] {
   position: absolute;
   width: 100%;
   height: 100%;
+  top: 0;
+  left: 0;
   background: #000000a0;
   opacity: 0;
   transition: opacity 0.2s ease;
@@ -116,11 +119,25 @@ function filteredData(type: ItemType): ItemSummary[] {
   background: #000000c0;
   width: var(--item-list-item-width);
   font-size: 13px;
+  left: 0;
   bottom: 0;
   z-index: 30;
 }
 
+.item-list-item.router-link-active {
+  outline: 2px solid #eee;
+  .item-list-item-name {
+    color: rgba(var(--bs-dark-rgb), var(--bs-text-opacity)) !important;
+    font-weight: bold;
+    background: #eee;
+  }
+}
+
 @media (max-width: 768px) {
+  .item-list {
+    max-height: 480px;
+  }
+
   .item-list-item-name {
     font-size: 12px;
   }
