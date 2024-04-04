@@ -21,7 +21,7 @@ useHead({
 
 onMounted(() => {
   const wrapperY = document.getElementById('item-info-wrapper')?.getBoundingClientRect().top ?? 0;
-  scrollTo({ top: wrapperY - 60 });
+  scrollTo({ top: window.scrollY + wrapperY - 60 });
   setLastView('item', id.toString());
 });
 </script>
