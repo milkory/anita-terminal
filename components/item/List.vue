@@ -16,7 +16,7 @@ function isSelected(array: Ref<any[]>, n: number) {
 function checkShow(item: ItemSummary, type: ItemType): boolean {
   return (
     searchType.value == type &&
-    (item.online || forceAll) &&
+    (item.online || forceAll.value) &&
     item.name.includes(searchInput.value) &&
     (type != 'equip' || isSelected(searchEquipSide, (item as EquipSummary).side))
   );
@@ -44,7 +44,7 @@ onMounted(() => {
         <BFormInput v-model="searchInput" placeholder="搜索.." />
       </div>
       <BCollapse id="item-filter">
-        <CharListFilter
+        <AnitaListFilter
           v-model="searchEquipSide"
           class="mt-2"
           name="阵营"
@@ -63,9 +63,7 @@ onMounted(() => {
           :style="{ backgroundImage: `url(/img/res/${item.cId}.webp)` }"
         >
           <div class="item-list-item-cover"></div>
-          <div
-            class="item-list-item-name text-light text-center d-flex justify-content-around align-items-center"
-          >
+          <div class="item-list-item-name text-light text-center">
             {{ item.name }}
           </div>
           <div class="item-list-item-tip">
@@ -133,13 +131,16 @@ onMounted(() => {
 }
 
 .item-list-item-name {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
   position: absolute;
-  background: #000000c0;
   width: var(--item-list-item-width);
-  font-size: 13px;
+  height: 1.5rem;
   left: 0;
   bottom: 0;
-  height: 1.5rem;
+  background: #000000c0;
+  font-size: 13px;
   z-index: 30;
 }
 

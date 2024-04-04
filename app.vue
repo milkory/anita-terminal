@@ -19,7 +19,7 @@ const bgStyle = computed(() => {
   <SiteNav>
     <template #left>
       <SiteNavItem icon="/img/icon/nav/char.png" name="角色" to="/char" />
-      <!-- <SiteNavItem icon="/img/icon/nav/item.png" name="物品" to="/"></SiteNavItem> -->
+      <SiteNavItem icon="/img/icon/nav/item.png" name="物品" to="/item"></SiteNavItem>
     </template>
     <template #right>
       <!-- <SiteNavItem icon="/img/icon/map.png" name="地图" to="/"></SiteNavItem> -->

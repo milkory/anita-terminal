@@ -1,5 +1,5 @@
 <script setup lang="ts">
-const props = defineProps<{
+defineProps<{
   data: UnitSummary[];
 }>();
 
@@ -9,19 +9,19 @@ const searchInput = ref('');
 const searchLine = ref(new Array(3));
 const searchSide = ref(new Array(6));
 
+const forceAll = computed(() => searchInput.value == '~forceAll');
+
 function isSelected(array: Ref<any[]>, n: number) {
   return array.value.every((it) => !it) || array.value[n];
 }
 
-function filteredData(): UnitSummary[] {
-  const forceAll = searchInput.value == '~forceAll';
-  return props.data.filter((it) => {
-    return (
-      (forceAll || (it.name.includes(searchInput.value) && it.online)) &&
-      isSelected(searchLine, it.line - 1) &&
-      isSelected(searchSide, it.side - 1)
-    );
-  });
+function checkShow(unit: UnitSummary): boolean {
+  return (
+    (unit.online || forceAll.value) &&
+    unit.name.includes(searchInput.value) &&
+    isSelected(searchLine, unit.line - 1) &&
+    isSelected(searchSide, unit.side - 1)
+  );
 }
 </script>
 
@@ -41,13 +41,13 @@ function filteredData(): UnitSummary[] {
           </div>
         </div>
         <BCollapse id="char-filter">
-          <CharListFilter
+          <AnitaListFilter
             v-model="searchLine"
             class="mt-2"
             name="站位"
             :options="['前排', '中排', '后排']"
           />
-          <CharListFilter
+          <AnitaListFilter
             v-model="searchSide"
             class="mt-2"
             name="阵营"
@@ -65,7 +65,8 @@ function filteredData(): UnitSummary[] {
       <div class="col-md-9 overflow-y-auto h-100 mt-2">
         <div class="char-list-grid d-grid">
           <NuxtLink
-            v-for="char in filteredData()"
+            v-for="char in data"
+            v-show="checkShow(char)"
             :key="char.id"
             :to="`/char/${char.id - 10000000}`"
             :class="['char-list-item', 'position-relative', `bg-quality-${char.quality}`]"

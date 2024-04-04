@@ -2,10 +2,10 @@ export interface Unit {
   id: number;
   name: string;
   nameEn: string;
-  side: UnitSide;
+  side: number;
   views: UnitView[];
   line: number;
-  quality: string;
+  quality: Quality;
 
   attr: UnitAttribute;
   growth: UnitAttribute;
@@ -30,11 +30,6 @@ export interface UnitView {
   id: number;
   name: string;
   hasState2: boolean;
-}
-
-export interface UnitSide {
-  sort: number;
-  name: string;
 }
 
 export interface UnitAttribute {
@@ -132,7 +127,7 @@ export function filterHomeSkill(skills: UnitHomeSkill[], base?: UnitHomeSkill) {
 export interface UnitSummary {
   id: number;
   name: string;
-  quality: string;
+  quality: Quality;
   line: number;
   skill: string[];
   views: number[];

@@ -8,9 +8,9 @@ defineProps<{
   <div class="char-basic-info mt-2 d-flex">
     <div class="char-side d-flex align-items-center">
       <img
-        :src="`/img/icon/char/camp_${data.side.sort}.png`"
+        :src="`/img/icon/char/camp_${data.side}.png`"
         class="img-fluid px-1 m-auto"
-        :alt="data.side.name"
+        :alt="sideLocale(data.side)"
       />
     </div>
     <div class="ms-2">
