@@ -7,6 +7,11 @@ const level = ref(1);
 </script>
 
 <template>
+  <div class="d-flex mx-2 my-2">
+    <div class="me-3 text-nowrap fw-bold text-secondary">等级</div>
+    <input v-model.number="level" type="range" class="form-range" min="1" max="60" />
+    <div class="equip-level ms-3 text-nowrap">Lv. {{ level }}</div>
+  </div>
   <BCard variant="dark" class="mx-out-1">
     <div class="row">
       <div class="col-4 col-md-2 text-secondary fw-bold text-md-end">基础属性</div>
@@ -53,5 +58,9 @@ const level = ref(1);
   display: inline-block;
   width: 1.2em;
   vertical-align: 0.1em;
+}
+
+.equip-level {
+  width: 3.1em;
 }
 </style>
