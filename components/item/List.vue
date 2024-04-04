@@ -22,7 +22,7 @@ function filteredData(type: ItemType): ItemSummary[] {
 </script>
 
 <template>
-  <div class="item-list d-flex flex-column h-100">
+  <div class="item-list d-flex flex-column h-100 mx-out-1">
     <div class="mb-3">
       <div class="d-flex">
         <BButton v-b-toggle.item-filter class="me-2">
@@ -49,9 +49,10 @@ function filteredData(type: ItemType): ItemSummary[] {
           :key="item.id"
           :to="`/item/${item.id}`"
           :class="['item-list-item position-relative', `bg-quality-${item.quality}`]"
+          :style="{ backgroundImage: `url(/img/res/${item.cId}.webp)` }"
         >
           <div class="item-list-item-cover"></div>
-          <img :src="`/img/res/${item.cId}.webp`" :alt="item.name" class="item-list-item-img" />
+          <!-- <img :src="`/img/res/${item.cId}.webp`" :alt="item.name" class="item-list-item-img" /> -->
           <div class="item-list-item-name text-light text-center">{{ item.name }}</div>
           <div class="item-list-item-tip">
             <ItemEquipListTag v-if="true" :data="item as EquipSummary" />
@@ -65,16 +66,21 @@ function filteredData(type: ItemType): ItemSummary[] {
 <style>
 .item-list-grid {
   gap: 0.5rem;
+  padding-top: 2px;
   padding-left: 2px;
   grid-template-columns: repeat(auto-fill, minmax(var(--item-list-item-width), 1fr));
 }
 
 .item-list-item {
   max-width: var(--item-list-item-width);
-  aspect-ratio: 1;
+  aspect-ratio: 1.15;
   flex: 1 0 10%;
   border-radius: 0.4em;
   overflow: clip;
+  background-position: center;
+  background-size: 80%;
+  background-repeat: no-repeat;
+  transition: background-size 0.2s ease;
 }
 
 .item-list-item-cover {
@@ -104,9 +110,7 @@ function filteredData(type: ItemType): ItemSummary[] {
     opacity: 1;
   }
 
-  .item-list-item-img {
-    scale: 1.1;
-  }
+  background-size: 90%;
 }
 
 .item-list-item-img {

@@ -20,13 +20,15 @@ useHead({
 });
 
 onMounted(() => {
+  const wrapperY = document.getElementById('item-info-wrapper')?.getBoundingClientRect().top ?? 0;
+  scrollTo({ top: wrapperY - 60 });
   setLastView('item', id.toString());
 });
 </script>
 
 <template>
   <div v-if="data" class="col-md-6 mt-3 mt-md-0 mb-5 mb-md-0">
-    <AnitaPanel>
+    <AnitaPanel id="item-info-wrapper">
       <ItemBasicInfo :data="data" />
       <ItemEquipInfo v-if="data.type == 'equip'" :data="data as Equipment" class="mt-2" />
       <ItemObtainInfo v-if="data.obtain.length > 0" :data="data as Equipment" class="mt-2" />
