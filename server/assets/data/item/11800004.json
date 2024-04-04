@@ -1,1 +1,0 @@
-{"id":11800004,"type":"equip","name":"测试武器-激光剑","quality":"n","desc":"","subType":1,"side":-1,"attr":{"hp":9999,"def":0,"atk":0},"growth":{"hp":0,"atk":0,"def":1},"skills":[{"id":12300869,"name":"","desc":"每波战斗开始时击杀所有敌人","detailDesc":""}],"randomSkills":[80300039],"excludeSkills":[],"obtain":[],"cId":11800277}

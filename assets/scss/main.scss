@@ -26,6 +26,10 @@ body {
   height: calc(100dvh - var(--anita-bottom-height));
 }
 
+.h-afull {
+  height: calc(100dvh - var(--anita-bottom-height) - 3rem);
+}
+
 .mb-nav {
   margin-bottom: var(--anita-bottom-height);
 }

@@ -16,7 +16,7 @@ export default defineEventHandler(async (event) => {
       });
     }
   } else if (type == 'summary') {
-    return await useStorage('assets:server').getItem('/data/equip/summary.json');
+    return await useStorage('assets:server').getItem('/data/item/summary.json');
   }
   throw createError({
     statusCode: 400,

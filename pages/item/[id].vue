@@ -7,8 +7,11 @@ const id = parseInt(route.params.id.toString());
 const { data } = await useFetch<Item>('/api/item', {
   query: { id: id }
 });
+const { data: summary } = await useFetch<ItemSummaryList>('/api/item', {
+  query: { type: 'summary' }
+});
 
-if (!data.value) {
+if (!data.value || !summary.value) {
   throw createError({
     statusCode: 404,
     statusMessage: 'Not Found'
@@ -28,10 +31,12 @@ onMounted(() => {
 <template>
   <div>
     <div class="row p-2">
-      <div class="col-md-6">
-        <AnitaPanel></AnitaPanel>
+      <div v-if="summary" class="col-md-6">
+        <AnitaPanel class="h-afull">
+          <ItemList :data="summary" />
+        </AnitaPanel>
       </div>
-      <div class="col-md-6 mt-3 mt-md-0">
+      <div v-if="data" class="col-md-6 mt-3 mt-md-0">
         <AnitaPanel>
           <ItemBasicInfo :data="data" />
           <ItemEquipInfo v-if="data.type == 'equip'" :data="data as Equipment" class="mt-2" />

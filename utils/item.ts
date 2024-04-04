@@ -10,6 +10,18 @@ export interface Item {
   cId: number;
 }
 
+export interface ItemSummaryList {
+  equip: EquipSummary[];
+}
+
+export interface ItemSummary {
+  id: number;
+  name: string;
+  quality: Quality;
+  online: boolean;
+  cId: number;
+}
+
 export interface SourceMaterial {
   id: number;
   name: string;
@@ -44,6 +56,11 @@ export interface Equipment extends Item {
   skills: Skill[];
   randomSkills: number[];
   excludeSkills: number[];
+}
+
+export interface EquipSummary extends ItemSummary {
+  subType: number;
+  side: number;
 }
 
 export interface EquipAttribute {
