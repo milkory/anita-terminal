@@ -78,8 +78,7 @@ onMounted(() => {
 <style>
 .item-list-grid {
   gap: 0.5rem;
-  padding-top: 2px;
-  padding-left: 2px;
+  padding: 2px;
   grid-template-columns: repeat(auto-fill, minmax(var(--item-list-item-width), 1fr));
 }
 
