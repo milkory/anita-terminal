@@ -1,24 +1,34 @@
 <script setup lang="ts">
-const props = defineProps<{
+defineProps<{
   data: ItemSummaryList;
 }>();
 
 const searchInput = ref('');
+const searchType = ref('equip');
 const searchEquipSide = ref(new Array(7));
+
+const forceAll = computed(() => searchInput.value == '~forceAll');
 
 function isSelected(array: Ref<any[]>, n: number) {
   return array.value.every((it) => !it) || array.value[n];
 }
 
-function filteredData(type: ItemType): ItemSummary[] {
-  const forceAll = searchInput.value == '~forceAll';
-  return props.data[type].filter((it) => {
-    return (
-      (forceAll || (it.name.includes(searchInput.value) && it.online)) &&
-      isSelected(searchEquipSide, it.side)
-    );
-  });
+function checkShow(item: ItemSummary, type: ItemType): boolean {
+  return (
+    searchType.value == type &&
+    (item.online || forceAll) &&
+    item.name.includes(searchInput.value) &&
+    (type != 'equip' || isSelected(searchEquipSide, (item as EquipSummary).side))
+  );
 }
+
+onMounted(() => {
+  for (const el of document.getElementsByClassName('item-list-item-name')) {
+    if (el.clientHeight < el.scrollHeight) {
+      el.classList.add('small');
+    }
+  }
+});
 </script>
 
 <template>
@@ -45,15 +55,19 @@ function filteredData(type: ItemType): ItemSummary[] {
     <div class="item-list-content overflow-y-scroll">
       <div class="item-list-grid d-grid">
         <NuxtLink
-          v-for="item in filteredData('equip')"
+          v-for="item in data.equip"
+          v-show="checkShow(item, 'equip')"
           :key="item.id"
           :to="`/item/${item.id}`"
           :class="['item-list-item position-relative', `bg-quality-${item.quality}`]"
           :style="{ backgroundImage: `url(/img/res/${item.cId}.webp)` }"
         >
           <div class="item-list-item-cover"></div>
-          <!-- <img :src="`/img/res/${item.cId}.webp`" :alt="item.name" class="item-list-item-img" /> -->
-          <div class="item-list-item-name text-light text-center">{{ item.name }}</div>
+          <div
+            class="item-list-item-name text-light text-center d-flex justify-content-around align-items-center"
+          >
+            {{ item.name }}
+          </div>
           <div class="item-list-item-tip">
             <ItemEquipListTag v-if="true" :data="item as EquipSummary" />
           </div>
@@ -125,7 +139,13 @@ function filteredData(type: ItemType): ItemSummary[] {
   font-size: 13px;
   left: 0;
   bottom: 0;
+  height: 1.5rem;
   z-index: 30;
+}
+
+.item-list-item-name.small {
+  font-size: 10px;
+  line-height: 100%;
 }
 
 .item-list-item.router-link-active {
