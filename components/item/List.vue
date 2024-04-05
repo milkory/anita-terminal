@@ -16,8 +16,7 @@ function isSelected(array: Ref<any[]>, n: number) {
 function checkShow(item: ItemSummary, type: ItemType): boolean {
   return (
     searchType.value == type &&
-    (item.online || forceAll.value) &&
-    item.name.includes(searchInput.value) &&
+    (forceAll.value || (item.online && item.name.includes(searchInput.value))) &&
     (type != 'equip' || isSelected(searchEquipSide, (item as EquipSummary).side))
   );
 }

@@ -17,8 +17,7 @@ function isSelected(array: Ref<any[]>, n: number) {
 
 function checkShow(unit: UnitSummary): boolean {
   return (
-    (unit.online || forceAll.value) &&
-    unit.name.includes(searchInput.value) &&
+    (forceAll.value || (unit.online && unit.name.includes(searchInput.value))) &&
     isSelected(searchLine, unit.line - 1) &&
     isSelected(searchSide, unit.side - 1)
   );
