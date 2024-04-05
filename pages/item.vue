@@ -7,7 +7,7 @@ const { data: summary } = await useFetch<ItemSummaryList>('/api/item', {
 
 onMounted(() => {
   if (route.name == 'item') {
-    navigateTo(`/item/${getLastView('item') ?? 11800001}`);
+    navigateTo(`/item/${getLastView('item') ?? 11800028}`);
   }
 });
 </script>
