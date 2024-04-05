@@ -1,17 +1,14 @@
 <script setup lang="ts">
+defineEmits(['show-list']);
+
 const route = useRoute();
 
 const id = parseInt(route.params.id.toString());
 const { data } = await useFetch<Unit>('/api/char', {
   query: { id: id < 10000000 ? id + 10000000 : id }
 });
-const { data: summary } = await useFetch('/api/char', {
-  query: { type: 'summary' }
-});
 
-const doShowList = ref(false);
-
-if (!data.value || !summary.value) {
+if (!data.value) {
   throw createError({
     statusCode: 404,
     statusMessage: 'Not Found'
@@ -22,56 +19,32 @@ useHead({
   title: data.value.name
 });
 
-function showList() {
-  doShowList.value = true;
-  document.body.style.overflow = 'clip';
-}
-
-function hideList() {
-  doShowList.value = false;
-  document.body.style.overflow = '';
-}
-
 onMounted(() => {
-  document.body.style.overflow = '';
   setLastView('char', id.toString());
 });
 </script>
 
 <template>
-  <div>
-    <div v-if="data" class="row p-2">
-      <div class="col-md-6">
-        <BButtonGroup class="char-list-btn">
-          <BButton @click="showList()">
-            <Icon
-              class="char-list-icon fs-5"
-              name="material-symbols:format-list-bulleted-rounded"
-            />
-            角色列表
-          </BButton>
-        </BButtonGroup>
-        <CharView width="652px" :views="data['views']" />
-      </div>
-      <AnitaPanel class="rs-char col-md-6">
-        <CharBasicInfo :data="data" />
-        <BTabs class="mt-2" pills nav-class="mb-2">
-          <BTab title="信息"><CharInfo :data="data" /></BTab>
-          <BTab title="技能"><CharSkill :data="data" /></BTab>
-          <BTab title="共振"><CharTalent :data="data.talents" type="talent" /></BTab>
-          <BTab title="觉醒"><CharTalent :data="data.breakthroughs" type="breakthrough" /></BTab>
-          <BTab title="档案"><CharFile :data="data" /></BTab>
-        </BTabs>
-      </AnitaPanel>
+  <div v-if="data" class="row p-2">
+    <div class="col-md-6">
+      <BButtonGroup class="char-list-btn">
+        <BButton @click="$emit('show-list')">
+          <Icon class="char-list-icon fs-5" name="material-symbols:format-list-bulleted-rounded" />
+          角色列表
+        </BButton>
+      </BButtonGroup>
+      <CharView width="652px" :views="data['views']" />
     </div>
-    <Transition>
-      <div v-if="doShowList" class="char-list-cover h-screen fixed-top" @click="hideList()"></div>
-    </Transition>
-    <Transition name="char-list">
-      <div v-if="doShowList" class="char-list-wrapper container-xl fixed-top py-3">
-        <CharList :data="summary as UnitSummary[]" class="char-list" @exit="hideList()" />
-      </div>
-    </Transition>
+    <AnitaPanel class="rs-char col-md-6">
+      <CharBasicInfo :data="data" />
+      <BTabs class="mt-2" pills nav-class="mb-2">
+        <BTab title="信息"><CharInfo :data="data" /></BTab>
+        <BTab title="技能"><CharSkill :data="data" /></BTab>
+        <BTab title="共振"><CharTalent :data="data.talents" type="talent" /></BTab>
+        <BTab title="觉醒"><CharTalent :data="data.breakthroughs" type="breakthrough" /></BTab>
+        <BTab title="档案"><CharFile :data="data" /></BTab>
+      </BTabs>
+    </AnitaPanel>
   </div>
 </template>
 
