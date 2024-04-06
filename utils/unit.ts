@@ -58,7 +58,7 @@ export class UnitAttribute {
   constructor(
     name: string,
     icon?: string,
-    parse: (val: number) => string = (val) => Math.floor(val).toString()
+    parse: (val: number) => string = (val) => Math.ceil(val).toString()
   ) {
     this.name = name;
     this.icon = icon;
@@ -68,7 +68,7 @@ export class UnitAttribute {
 
 export class UnitGrowthAttribute extends UnitAttribute {
   grow(base: number, mul: number, level: number, trustLv: number) {
-    return base + mul * (level - 1) + mul * Math.floor(trustLv / 2);
+    return base + mul * (level - 1) + mul * Math.ceil(trustLv / 2);
   }
 }
 

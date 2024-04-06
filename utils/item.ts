@@ -25,7 +25,7 @@ export interface ItemSummary {
 export interface SourceMaterial {
   id: number;
   name: string;
-  quality: 'n' | 'r' | 'sr' | 'ssr' | 'ur';
+  quality: Quality;
   des: string;
   saleType: SaleType;
   cId: number;
