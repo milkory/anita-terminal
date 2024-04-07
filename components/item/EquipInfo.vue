@@ -1,9 +1,51 @@
 <script setup lang="ts">
-defineProps<{
+const props = defineProps<{
   data: Equipment;
 }>();
 
 const level = ref(1);
+const maxSkill = equipSkillMax(props.data.subType);
+const randomSkills = ref<RandomSkill[]>([]);
+const pendingSkill = ref<RandomSkill>();
+const refreshCount = ref(0);
+
+function checkPendingSkill() {
+  if (randomSkills.value.length < maxSkill && pendingSkill.value) {
+    randomSkills.value.push(pendingSkill.value);
+    pendingSkill.value = undefined;
+  }
+}
+
+function handleRandomSkillSelect(result: RandomSkill[]) {
+  document.getElementById('target-randsk-popover')?.click();
+  randomSkills.value = result;
+  refreshCount.value = -1;
+  checkPendingSkill();
+}
+
+async function addRandomSkill() {
+  if (randomSkills.value.length >= maxSkill && pendingSkill.value) return;
+
+  const data = props.data;
+  const filteredSet = (await getRandomSkillSet(data.randomSkills[0].id)).skills.filter(
+    (it) => randomSkills.value.every((o) => o.id != it.id) && !data.excludeSkills.includes(it.id)
+  );
+  const randSkill = setRandomValue(filteredSet[Math.floor(Math.random() * filteredSet.length)]);
+  if (randomSkills.value.length < maxSkill) {
+    randomSkills.value.push(randSkill);
+  } else {
+    pendingSkill.value = randSkill;
+  }
+
+  if (refreshCount.value > -1) {
+    refreshCount.value += 1;
+  }
+}
+
+function removeRandomSkill(skill: RandomSkill) {
+  randomSkills.value = randomSkills.value.filter((it) => it.id != skill.id);
+  checkPendingSkill();
+}
 </script>
 
 <template>
@@ -39,7 +81,10 @@ const level = ref(1);
     <div class="row mt-1 mt-md-0">
       <div class="col-3 col-md-2 text-secondary fw-bold text-md-end">词缀</div>
       <div class="col-9 col-md-10 fs-small align-self-end text-danger">
-        词缀数量 1/{{ equipSkillMax(data.subType) }}
+        词缀数量 {{ randomSkills.length }}/{{ equipSkillMax(data.subType) }}
+        <span v-if="refreshCount > 0" class="text-secondary ms-3">
+          已重试次数 {{ refreshCount }}
+        </span>
       </div>
     </div>
     <div class="row">
@@ -47,13 +92,52 @@ const level = ref(1);
       <div class="col-md-11 ps-2 ps-md-2 fs-small">
         <ul class="ms-md-4 mb-0">
           <li v-for="skill in data.skills" :key="skill.id" v-html="skill.desc"></li>
+          <li v-for="skill in randomSkills" :key="skill.id">
+            <span
+              class="equip-randsk-entry"
+              @click="removeRandomSkill(skill)"
+              v-html="skill.desc"
+            ></span>
+          </li>
+          <li v-if="pendingSkill" class="text-secondary">
+            <BBadge variant="warning" class="me-1">替换</BBadge>
+            <span v-html="pendingSkill.desc"></span>
+          </li>
+          <li v-if="data.randomSkills.length > 0" class="text-secondary">
+            <div v-if="!pendingSkill" class="equip-randsk-add" @click="addRandomSkill()">
+              <Icon name="material-symbols:add" class="equip-randsk-add-icon" />
+              {{ data.randomSkills[0].name }}
+            </div>
+            <div v-else class="equip-randsk-add" @click="addRandomSkill()">
+              <Icon name="material-symbols:close-rounded" class="equip-randsk-add-icon" />
+              词缀已满
+            </div>
+            <div id="target-randsk-popover" class="ms-2 equip-randsk-add">
+              <Icon name="mdi:tools" class="equip-randsk-add-icon" />
+              选择
+            </div>
+            <BPopover
+              class="randsk-popover"
+              target="target-randsk-popover"
+              click
+              placement="top"
+              :delay="0"
+              no-auto-close
+            >
+              <ItemEquipRandomSkill
+                :data="data"
+                :pre-skills="randomSkills.slice()"
+                @result="handleRandomSkillSelect($event)"
+              />
+            </BPopover>
+          </li>
         </ul>
       </div>
     </div>
   </BCard>
 </template>
 
-<style>
+<style class="scss">
 .equip-attr-icon {
   display: inline-block;
   width: 1.2em;
@@ -62,5 +146,43 @@ const level = ref(1);
 
 .equip-level {
   width: 3.1em;
+}
+
+.equip-randsk-entry {
+  cursor: pointer;
+  text-decoration: line-through #aaaaaa00;
+  transition: all 0.2s ease;
+
+  &:hover {
+    color: #aaa;
+    text-decoration: line-through #aaaaaaff;
+  }
+}
+
+.equip-randsk-add {
+  display: inline-block;
+  margin-top: 4px;
+  padding: 0 8px 1px 7px;
+  border-radius: 0.8em;
+  color: #888;
+  border: 1px dashed #888;
+  cursor: pointer;
+  opacity: 0.7;
+  transition: opacity 0.2s ease;
+}
+
+.equip-randsk-add:hover {
+  opacity: 1;
+}
+
+.equip-randsk-add-icon {
+  margin-top: -0.2em;
+}
+
+.randsk-popover {
+  --bs-popover-max-width: 800px;
+  .popover-body {
+    padding: 0;
+  }
 }
 </style>

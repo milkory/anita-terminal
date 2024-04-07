@@ -54,8 +54,13 @@ export interface Equipment extends Item {
   attr: EquipAttribute;
   growth: EquipAttribute;
   skills: Skill[];
-  randomSkills: number[];
+  randomSkills: RandomSkillSummary[];
   excludeSkills: number[];
+}
+
+export interface RandomSkillSummary {
+  id: number;
+  name: string;
 }
 
 export interface EquipSummary extends ItemSummary {
