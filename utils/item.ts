@@ -69,10 +69,12 @@ export interface EquipAttribute {
   atk: number;
 }
 
+const equipAttrParse = (val: number) => Math.round(val).toString();
+
 export const equipAttrMap = {
-  hp: attrMap.hp,
-  def: attrMap.def,
-  atk: attrMap.atk
+  hp: new UnitGrowthAttribute('生命', 'hp', equipAttrParse),
+  atk: new UnitGrowthAttribute('攻击', 'atk', equipAttrParse),
+  def: new UnitGrowthAttribute('防御', 'def', equipAttrParse)
 };
 
 export const itemTypeMap = {

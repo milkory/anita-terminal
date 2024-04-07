@@ -58,7 +58,7 @@ export class UnitAttribute {
   constructor(
     name: string,
     icon?: string,
-    parse: (val: number) => string = (val) => Math.ceil(val).toString()
+    parse: (val: number) => string = (val) => Math.floor(val).toString()
   ) {
     this.name = name;
     this.icon = icon;
