@@ -8,11 +8,11 @@ export default defineEventHandler(async (event) => {
     const id = parseInt(query.id.toString());
     const path = `/data/randsk/${id}.json`;
     if (await storage.hasItem(path)) {
-      return await useStorage('assets:server').getItem(path);
+      return await storage.getItem(path);
     } else {
       throw createError({
         statusCode: 404,
-        statusMessage: 'required assets not found'
+        statusMessage: 'requested assets not found'
       });
     }
   }

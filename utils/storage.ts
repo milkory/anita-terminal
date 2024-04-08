@@ -11,7 +11,7 @@ export function setLocalStorage(key: string, value: object) {
 
 export function setLastView(page: string, value?: string) {
   const store = getLocalStorage('lastView');
-  store['.'] = `${page}/${value ?? ''}`;
+  store['.'] = page + (value ? `/${value}` : '');
   store[page] = value;
   setLocalStorage('lastView', store);
 }

@@ -8,15 +8,15 @@ export default defineEventHandler(async (event) => {
     const id = parseInt(query.id.toString());
     const path = `/data/char/${id}.json`;
     if (await storage.hasItem(path)) {
-      return await useStorage('assets:server').getItem(path);
+      return await storage.getItem(path);
     } else {
       throw createError({
         statusCode: 404,
-        statusMessage: 'required assets not found'
+        statusMessage: 'requested assets not found'
       });
     }
   } else if (type == 'summary') {
-    return await useStorage('assets:server').getItem('/data/char/summary.json');
+    return await storage.getItem('/data/char/summary.json');
   }
   throw createError({
     statusCode: 400,
