@@ -10,6 +10,7 @@ export interface RandomSkill {
   minAttr?: number;
   maxAttr?: number;
   digit?: number;
+  value?: number;
 }
 
 const randomSkillCaches = new Map<number, RandomSkillSet>();
@@ -31,27 +32,32 @@ function within(min: number, num: number, max: number) {
 }
 
 function ignoreLowDigit(num: number) {
-  return parseFloat(num.toFixed(5)).toString();
+  return parseFloat(num.toFixed(5));
 }
 
 export function setRandomValue(skill: RandomSkill, val?: number) {
   let desc = skill.desc;
+  let value;
   if (skill.digit) {
     if (val) {
       const times = Math.ceil((val - skill.minAttr!) / skill.digit);
-      desc.replace(
-        '%s',
-        ignoreLowDigit(within(skill.minAttr!, skill.minAttr! + times * skill.digit, skill.maxAttr!))
+      value = ignoreLowDigit(
+        within(skill.minAttr!, skill.minAttr! + times * skill.digit, skill.maxAttr!)
       );
+      desc.replace('%s', value.toString());
     } else {
       const times = Math.floor(
         (Math.random() * (skill.maxAttr! - skill.minAttr! + skill.digit)) / skill.digit
       );
-      desc = desc.replace('%s', ignoreLowDigit(skill.minAttr! + times * skill.digit));
+      value = ignoreLowDigit(
+        within(skill.minAttr!, skill.minAttr! + times * skill.digit, skill.maxAttr!)
+      );
+      desc = desc.replace('%s', value.toString());
     }
   }
   return {
     id: skill.id,
-    desc: desc
+    desc: desc,
+    value: value
   };
 }

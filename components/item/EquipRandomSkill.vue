@@ -8,7 +8,7 @@ const emit = defineEmits<{
   result: [skills: RandomSkill[]];
 }>();
 
-const maxSkill = equipSkillMax(props.data.subType);
+const maxSkill = equipSkillMax(props.data.subType) - 1;
 const randomSkills = await getRandomSkillSet(props.data.randomSkills[0].id);
 const selectedSkills = ref(props.preSkills);
 
@@ -95,9 +95,9 @@ function submitResult() {
   height: 100%;
   font-size: 0.9em;
   padding: 0;
+  text-align: center;
 
   &::placeholder {
-    text-align: center;
     color: #aaa;
   }
 }

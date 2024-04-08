@@ -4,7 +4,7 @@ const props = defineProps<{
 }>();
 
 const level = ref(1);
-const maxSkill = equipSkillMax(props.data.subType);
+const maxSkill = equipSkillMax(props.data.subType) - 1;
 const randomSkills = ref<RandomSkill[]>([]);
 const pendingSkill = ref<RandomSkill>();
 const refreshCount = ref(0);
@@ -102,7 +102,7 @@ function canRemove(skill: RandomSkill) {
     <div class="row mt-1 mt-md-0">
       <div class="col-3 col-md-2 text-secondary fw-bold text-md-end">词缀</div>
       <div class="col-9 col-md-10 fs-small align-self-end text-danger">
-        词缀数量 {{ randomSkills.length }}/{{ equipSkillMax(data.subType) }}
+        词缀数量 {{ randomSkills.length + 1 }}/{{ maxSkill + 1 }}
         <span v-if="refreshCount > 0" class="text-secondary ms-3"> 刷新数 {{ refreshCount }} </span>
         <span v-else-if="refreshCount == -1" class="text-secondary ms-3">自定义词缀</span>
       </div>
