@@ -9,6 +9,10 @@ const randomSkills = ref<RandomSkill[]>([]);
 const pendingSkill = ref<RandomSkill>();
 const refreshCount = ref(0);
 
+const pendingConfilct = computed(() =>
+  randomSkills.value.some((it) => it.id == pendingSkill.value?.id)
+);
+
 function checkPendingSkill() {
   if (randomSkills.value.length < maxSkill && pendingSkill.value) {
     randomSkills.value.push(pendingSkill.value);
@@ -24,14 +28,17 @@ function handleRandomSkillSelect(result: RandomSkill[]) {
 }
 
 async function addRandomSkill() {
-  if (randomSkills.value.length >= maxSkill && pendingSkill.value) return;
+  if (pendingSkill.value) return;
 
   const data = props.data;
   const filteredSet = (await getRandomSkillSet(data.randomSkills[0].id)).skills.filter(
-    (it) => randomSkills.value.every((o) => o.id != it.id) && !data.excludeSkills.includes(it.id)
+    (it) => !data.excludeSkills.includes(it.id)
   );
   const randSkill = setRandomValue(filteredSet[Math.floor(Math.random() * filteredSet.length)]);
-  if (randomSkills.value.length < maxSkill) {
+  if (
+    randomSkills.value.length < maxSkill &&
+    !randomSkills.value.some((it) => it.id == randSkill.id)
+  ) {
     randomSkills.value.push(randSkill);
   } else {
     pendingSkill.value = randSkill;
@@ -43,8 +50,22 @@ async function addRandomSkill() {
 }
 
 function removeRandomSkill(skill: RandomSkill) {
-  randomSkills.value = randomSkills.value.filter((it) => it.id != skill.id);
-  checkPendingSkill();
+  if (canRemove(skill)) {
+    randomSkills.value = randomSkills.value.filter((it) => it.id != skill.id);
+    checkPendingSkill();
+  }
+}
+
+function removePendingSkill() {
+  pendingSkill.value = undefined;
+}
+
+function isConfilct(skill: RandomSkill) {
+  return skill.id == pendingSkill.value?.id;
+}
+
+function canRemove(skill: RandomSkill) {
+  return pendingSkill.value != undefined && (!pendingConfilct.value || isConfilct(skill));
 }
 </script>
 
@@ -82,9 +103,8 @@ function removeRandomSkill(skill: RandomSkill) {
       <div class="col-3 col-md-2 text-secondary fw-bold text-md-end">词缀</div>
       <div class="col-9 col-md-10 fs-small align-self-end text-danger">
         词缀数量 {{ randomSkills.length }}/{{ equipSkillMax(data.subType) }}
-        <span v-if="refreshCount > 0" class="text-secondary ms-3">
-          已重试次数 {{ refreshCount }}
-        </span>
+        <span v-if="refreshCount > 0" class="text-secondary ms-3"> 刷新数 {{ refreshCount }} </span>
+        <span v-else-if="refreshCount == -1" class="text-secondary ms-3">自定义词缀</span>
       </div>
     </div>
     <div class="row">
@@ -93,15 +113,20 @@ function removeRandomSkill(skill: RandomSkill) {
         <ul class="ms-md-4 mb-0">
           <li v-for="skill in data.skills" :key="skill.id" v-html="skill.desc"></li>
           <li v-for="skill in randomSkills" :key="skill.id">
+            <BBadge v-if="isConfilct(skill)" variant="danger" class="me-1">冲突</BBadge>
             <span
-              class="equip-randsk-entry"
+              :class="['equip-randsk-entry', canRemove(skill) && 'removable']"
               @click="removeRandomSkill(skill)"
               v-html="skill.desc"
             ></span>
           </li>
           <li v-if="pendingSkill" class="text-secondary">
             <BBadge variant="warning" class="me-1">替换</BBadge>
-            <span v-html="pendingSkill.desc"></span>
+            <span
+              class="equip-randsk-entry removable"
+              @click="removePendingSkill()"
+              v-html="pendingSkill.desc"
+            ></span>
           </li>
           <li v-if="data.randomSkills.length > 0" class="text-secondary">
             <div v-if="!pendingSkill" class="equip-randsk-add" @click="addRandomSkill()">
@@ -114,7 +139,7 @@ function removeRandomSkill(skill: RandomSkill) {
             </div>
             <div id="target-randsk-popover" class="ms-2 equip-randsk-add">
               <Icon name="mdi:tools" class="equip-randsk-add-icon" />
-              选择
+              自定义
             </div>
             <BPopover
               class="randsk-popover"
@@ -155,6 +180,9 @@ function removeRandomSkill(skill: RandomSkill) {
 
   &:hover {
     color: #aaa;
+  }
+
+  &.removable:hover {
     text-decoration: line-through #aaaaaaff;
   }
 }
