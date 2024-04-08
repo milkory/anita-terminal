@@ -20,7 +20,11 @@ onMounted(() => setLastView('about'));
         <div class="col-md-8 overflow-y-auto flex-1">
           <div class="h-100">
             <div class="fs-5 fw-bold mb-3">更新日志</div>
-            <div class="fw-bold font-title text-warning">2024/4/6 - V1.0</div>
+            <div class="fw-bold font-title text-warning">2024/4/8 - V1.1</div>
+            <ul>
+              <li>在物品页面中添加词缀系列功能。</li>
+            </ul>
+            <div class="fw-bold font-title text-secondary">2024/4/6 - V1.0</div>
             <ul>
               <li>重制关于页，添加更新日志。</li>
             </ul>
