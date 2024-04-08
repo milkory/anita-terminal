@@ -36,18 +36,20 @@ function ignoreLowDigit(num: number) {
 }
 
 export function setRandomValue(skill: RandomSkill, val?: number) {
+  console.log(skill, val);
   let desc = skill.desc;
   let value;
   if (skill.digit) {
     if (val) {
-      const times = Math.ceil((val - skill.minAttr!) / skill.digit);
+      const times = Math.round((val - skill.minAttr!) / skill.digit);
       value = ignoreLowDigit(
         within(skill.minAttr!, skill.minAttr! + times * skill.digit, skill.maxAttr!)
       );
-      desc.replace('%s', value.toString());
+      desc = desc.replace('%s', value.toString());
     } else {
       const times = Math.floor(
-        (Math.random() * (skill.maxAttr! - skill.minAttr! + skill.digit)) / skill.digit
+        (Math.random() * (skill.maxAttr! * 100 - skill.minAttr! * 100 + skill.digit * 100)) /
+          (skill.digit * 100)
       );
       value = ignoreLowDigit(
         within(skill.minAttr!, skill.minAttr! + times * skill.digit, skill.maxAttr!)
@@ -56,8 +58,10 @@ export function setRandomValue(skill: RandomSkill, val?: number) {
     }
   }
   return {
-    id: skill.id,
-    desc: desc,
-    value: value
+    ...skill,
+    ...{
+      desc: desc,
+      value: value
+    }
   };
 }

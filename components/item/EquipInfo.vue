@@ -14,7 +14,11 @@ const pendingConfilct = computed(() =>
 );
 
 function checkPendingSkill() {
-  if (randomSkills.value.length < maxSkill && pendingSkill.value) {
+  if (
+    randomSkills.value.length < maxSkill &&
+    pendingSkill.value &&
+    randomSkills.value.every((it) => !isConfilct(it))
+  ) {
     randomSkills.value.push(pendingSkill.value);
     pendingSkill.value = undefined;
   }
@@ -208,7 +212,13 @@ function canRemove(skill: RandomSkill) {
 }
 
 .randsk-popover {
-  --bs-popover-max-width: 800px;
+  width: 500px;
+  max-width: 100%;
+
+  &.fade:not(.show) {
+    pointer-events: none;
+  }
+
   .popover-body {
     padding: 0;
   }

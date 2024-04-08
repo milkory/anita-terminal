@@ -10,7 +10,9 @@ const emit = defineEmits<{
 
 const maxSkill = equipSkillMax(props.data.subType) - 1;
 const randomSkills = await getRandomSkillSet(props.data.randomSkills[0].id);
-const selectedSkills = ref(props.preSkills);
+const selectedSkills = ref(
+  props.preSkills.map((it) => randomSkills.skills.find((o) => o.id == it.id))
+);
 
 function selectMax() {
   return selectedSkills.value.length >= maxSkill;
@@ -23,7 +25,7 @@ function excluded(skill: RandomSkill) {
 function toggleSkill(skill: RandomSkill) {
   const newList = selectedSkills.value.filter((it) => it.id != skill.id);
   if (newList.length == selectedSkills.value.length && !selectMax()) {
-    selectedSkills.value.push(skill);
+    selectedSkills.value.push({ ...skill });
   } else {
     selectedSkills.value = newList;
   }
@@ -32,7 +34,9 @@ function toggleSkill(skill: RandomSkill) {
 function submitResult() {
   emit(
     'result',
-    selectedSkills.value.map((it) => setRandomValue(it))
+    selectedSkills.value.map((it) =>
+      setRandomValue(it, parseFloat(document.getElementById(`randsk-input-${it.id}`)?.value))
+    )
   );
 }
 </script>
@@ -57,8 +61,11 @@ function submitResult() {
         <BBadge v-if="excluded(skill)" variant="danger" class="float-end">冲突</BBadge>
         <BFormInput
           v-else-if="skill.digit"
+          :id="`randsk-input-${skill.id}`"
           class="equip-ransk-var-input"
           :placeholder="`${skill.minAttr}-${skill.maxAttr}`"
+          :model-value="preSkills.find((it) => it.id == skill.id)?.value"
+          @click="(event: Event) => event.stopPropagation()"
         />
       </BListGroupItem>
     </BListGroup>
@@ -75,7 +82,7 @@ function submitResult() {
 
 <style lang="scss">
 .equip-randsk-list {
-  width: 500px;
+  width: 100%;
   border-radius: 0.3rem;
   background: #1a1a1aee;
 
