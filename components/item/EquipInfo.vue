@@ -216,7 +216,7 @@ function canRemove(skill: RandomSkill) {
   max-width: 100%;
 
   &.fade:not(.show) {
-    pointer-events: none;
+    opacity: 1;
   }
 
   .popover-body {
