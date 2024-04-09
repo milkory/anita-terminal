@@ -3,19 +3,12 @@ useHead({
   titleTemplate: (chunk) => (chunk ? `${chunk} / Anita Terminal` : 'Anita Terminal')
 });
 
-const image = useImage();
-
 const bgImage = useBackground();
-const bgStyle = computed(() => {
-  return {
-    backgroundImage: `url('${image(bgImage.value, { quality: 80, format: 'webp' })}')`
-  };
-});
 </script>
 
 <template>
   <NuxtLoadingIndicator />
-  <div id="background" :style="bgStyle"></div>
+  <div id="background" :style="{ backgroundImage: `url(${bgImage})` }"></div>
   <SiteNav>
     <template #left>
       <SiteNavItem icon="/img/icon/nav/char.png" name="角色" to="/char" />
@@ -26,9 +19,9 @@ const bgStyle = computed(() => {
       <SiteNavItem icon="/img/icon/nav/about.png" name="关于" to="/about" />
     </template>
   </SiteNav>
-  <main class="container-xl py-md-3 lang-zh">
+  <NuxtLayout>
     <NuxtPage />
-  </main>
+  </NuxtLayout>
 </template>
 
 <style scoped>

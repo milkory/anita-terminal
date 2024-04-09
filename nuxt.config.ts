@@ -1,13 +1,7 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   devtools: { enabled: true },
-  modules: [
-    '@bootstrap-vue-next/nuxt',
-    '@nuxtjs/eslint-module',
-    '@nuxt/image',
-    'nuxt-icon',
-    '@nuxtjs/seo'
-  ],
+  modules: ['@bootstrap-vue-next/nuxt', '@nuxtjs/eslint-module', 'nuxt-icon', '@nuxtjs/seo'],
   css: ['~/assets/scss/main.scss'],
   image: {
     quality: 80
