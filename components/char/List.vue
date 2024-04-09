@@ -73,6 +73,7 @@ function checkShow(unit: UnitSummary): boolean {
           >
             <div class="char-list-item-cover"></div>
             <img
+              loading="lazy"
               :src="`/img/res/${char.views[0]}/face.webp`"
               :alt="char.name"
               class="char-list-item-img"

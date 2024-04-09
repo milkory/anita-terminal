@@ -15,7 +15,7 @@ export default defineNuxtConfig({
   site: {
     url: 'https://anita.wiki',
     name: '阿妮塔终端 / Anita Terminal',
-    description: '阿妮塔终端向列车长们提供各类《雷索纳斯》游戏相关工具。',
+    description: '阿妮塔终端向列车长们提供《雷索纳斯》游戏Wiki和各类相关工具。',
     defaultLocale: 'zh'
   },
   sitemap: {
