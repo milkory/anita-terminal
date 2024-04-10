@@ -57,13 +57,6 @@ body {
   --bs-btn-border-color: #6c757d60;
 }
 
-@media (max-width: 767.99px) {
-  .btn-secondary {
-    --bs-btn-bg: #6c757d;
-    --bs-btn-border-color: #6c757d;
-  }
-}
-
 .v-enter-active,
 .v-leave-active {
   transition: opacity 0.3s ease;
