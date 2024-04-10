@@ -3,3 +3,9 @@
     <slot />
   </main>
 </template>
+
+<style scoped>
+main {
+  margin-bottom: var(--anita-bottom-height);
+}
+</style>

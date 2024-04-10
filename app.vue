@@ -36,7 +36,4 @@ const bgImage = useBackground();
   scale: 1.1;
   top: 0;
 }
-main {
-  margin-bottom: var(--anita-bottom-height);
-}
 </style>

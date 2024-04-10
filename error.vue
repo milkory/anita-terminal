@@ -8,6 +8,8 @@ const props = defineProps<{
 useHead({
   titleTemplate: ` // ERROR ${props.error.statusCode} / Anita Terminal //`
 });
+
+onMounted(() => (document.body.style.overflow = 'auto'));
 </script>
 
 <template>
@@ -33,10 +35,6 @@ useHead({
 </template>
 
 <style class="scss">
-body {
-  overflow-y: auto;
-}
-
 .rs-error-page {
   background: #020410;
 }

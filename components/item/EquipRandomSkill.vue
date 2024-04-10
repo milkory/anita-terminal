@@ -11,7 +11,9 @@ const emit = defineEmits<{
 const maxSkill = equipSkillMax(props.data.subType) - 1;
 const randomSkills = await getRandomSkillSet(props.data.randomSkills[0].id);
 const selectedSkills = ref(
-  props.preSkills.map((it) => randomSkills.skills.find((o) => o.id == it.id))
+  props.preSkills
+    .map((it) => randomSkills.skills.find((o) => o.id == it.id))
+    .filter((it) => it != undefined)
 );
 
 function selectMax() {
@@ -35,7 +37,10 @@ function submitResult() {
   emit(
     'result',
     selectedSkills.value.map((it) =>
-      setRandomValue(it, parseFloat(document.getElementById(`randsk-input-${it.id}`)?.value))
+      setRandomValue(
+        it,
+        parseFloat((document.getElementById(`randsk-input-${it.id}`) as HTMLFormElement)?.value)
+      )
     )
   );
 }
