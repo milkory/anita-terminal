@@ -3,9 +3,6 @@ export default defineNuxtConfig({
   devtools: { enabled: true },
   modules: ['@bootstrap-vue-next/nuxt', '@nuxtjs/eslint-module', 'nuxt-icon', '@nuxtjs/seo'],
   css: ['~/assets/scss/main.scss'],
-  image: {
-    quality: 80
-  },
   site: {
     url: 'https://anita.wiki',
     name: '阿妮塔终端 / Anita Terminal',
@@ -14,5 +11,8 @@ export default defineNuxtConfig({
   },
   sitemap: {
     sources: ['/api/__sitemap__/urls']
+  },
+  seo: {
+    fallbackTitle: false
   }
 });
