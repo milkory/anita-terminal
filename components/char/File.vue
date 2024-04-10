@@ -17,25 +17,27 @@ defineProps<{
     <BCard variant="dark" class="main-text mt-2">
       <p v-for="(resume, i) in data.resume" :key="i" v-html="resume.des"></p>
     </BCard>
-    <BCard
-      v-for="(story, i) in data.files[0].stories"
-      :key="story.title"
-      variant="dark"
-      class="char-story main-text mt-2 py-0"
-    >
-      <template #header>
-        <div v-b-toggle="`char-story-${i}`" class="char-story-title fw-bold mb-0">
-          {{ story.title }}
-          <BBadge variant="light" class="ms-2">默契等级 LV {{ story.unlockLevel }} 解锁</BBadge>
-          <div class="d-inline-block float-end h-100">
-            <Icon name="fe:drop-down" class="fs-5" />
+    <template v-if="data.files.length > 0">
+      <BCard
+        v-for="(story, i) in data.files[0].stories"
+        :key="story.title"
+        variant="dark"
+        class="char-story main-text mt-2 py-0"
+      >
+        <template #header>
+          <div v-b-toggle="`char-story-${i}`" class="char-story-title fw-bold mb-0">
+            {{ story.title }}
+            <BBadge variant="light" class="ms-2">默契等级 LV {{ story.unlockLevel }} 解锁</BBadge>
+            <div class="d-inline-block float-end h-100">
+              <Icon name="fe:drop-down" class="fs-5" />
+            </div>
           </div>
-        </div>
-      </template>
-      <BCollapse :id="`char-story-${i}`">
-        <div class="char-story-content" v-html="story.desc"></div>
-      </BCollapse>
-    </BCard>
+        </template>
+        <BCollapse :id="`char-story-${i}`">
+          <div class="char-story-content" v-html="story.desc"></div>
+        </BCollapse>
+      </BCard>
+    </template>
   </div>
 </template>
 
