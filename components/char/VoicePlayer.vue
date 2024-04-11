@@ -14,10 +14,11 @@ let audio: HTMLAudioElement;
 
 watch(playing, (value) => {
   if (!value && audio) {
-    console.log(value);
     audio.pause();
   }
 });
+
+onBeforeRouteUpdate(() => stop());
 
 function play() {
   voicePlaying.value = `${props.lang}-${props.voiceId}`;
@@ -35,7 +36,7 @@ function stop() {
   if (voicePlaying.value == identifier) {
     voicePlaying.value = undefined;
   }
-  audio.pause();
+  audio?.pause();
 }
 </script>
 
