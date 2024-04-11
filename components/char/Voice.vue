@@ -8,7 +8,7 @@ const file = props.data.files[0];
 
 <template>
   <div class="rs-char-audio">
-    <BCard v-if="data.files.length > 0" variant="dark" class="main-text mt-2">
+    <BCard v-if="data.files.length > 0" variant="dark" class="main-text mt-2" body-class="py-2">
       <div class="d-flex align-items-center justify-content-center">
         <Icon name="streamline:voice-mail-solid" class="me-2" />
         {{ file.cv1 == '' ? '—' : file.cv1 }}
@@ -16,7 +16,7 @@ const file = props.data.files[0];
         {{ file.cv2 == '' ? '—' : file.cv2 }}
       </div>
     </BCard>
-    <BTabs class="mt-2" pills fill nav-class="mb-2">
+    <BTabs class="mt-2" pills fill>
       <BTab v-for="(type, typeKey) in unitVoiceType" :key="typeKey">
         <template #title>
           <div class="d-flex align-items-center justify-content-center">
