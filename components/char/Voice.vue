@@ -34,7 +34,7 @@ const file = props.data.files[0];
             <div v-b-toggle="`char-voice-${i}`" class="char-voice-title fw-bold mb-0">
               {{ audio.name }}
               <BBadge v-if="audio.unlockLevel" variant="light" class="ms-2">
-                默契等级 LV {{ audio.unlockLevel }} 解锁
+                默契 LV {{ audio.unlockLevel }}
               </BBadge>
               <div class="d-inline-block float-end h-100">
                 <template v-for="(_, key, j) in unitVoiceLang">

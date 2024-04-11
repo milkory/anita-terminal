@@ -27,7 +27,7 @@ defineProps<{
         <template #header>
           <div v-b-toggle="`char-story-${i}`" class="char-story-title fw-bold mb-0">
             {{ story.title }}
-            <BBadge variant="light" class="ms-2">默契等级 LV {{ story.unlockLevel }} 解锁</BBadge>
+            <BBadge variant="light" class="ms-2">默契 LV {{ story.unlockLevel }}</BBadge>
             <div class="d-inline-block float-end h-100">
               <Icon name="fe:drop-down" class="fs-5" />
             </div>
