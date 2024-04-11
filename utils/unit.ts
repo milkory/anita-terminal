@@ -174,12 +174,44 @@ export interface UnitFile {
   cv1: string;
   cv2: string;
   stories: UnitStory[];
+  trustAudios: UnitAudio[];
+  battleAudios: UnitAudio[];
+  resExists: boolean[];
 }
 
 export interface UnitStory {
   title: string;
   unlockLevel: number;
   desc: string;
+}
+
+export const unitVoiceLang = {
+  zh: {
+    name: '中文',
+    icon: 'uil:letter-chinese-a'
+  },
+  jp: {
+    name: '日文',
+    icon: 'uil:letter-japanese-a'
+  }
+};
+
+export const unitVoiceType = {
+  trustAudios: {
+    name: '信赖语音',
+    icon: 'material-symbols:family-home'
+  },
+  battleAudios: {
+    name: '战斗语音',
+    icon: 'material-symbols:swords'
+  }
+};
+
+export interface UnitAudio {
+  id: number;
+  name: string;
+  text: string;
+  unlockLevel?: number;
 }
 
 export function getAllTag(skills: Skill[]): CardTag[] {
